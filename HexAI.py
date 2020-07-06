@@ -1,9 +1,24 @@
 
 
 
-class HexAI:
-    def __init__(self):
+class MonteCarlo:
+    def solve(self, engine):
         pass
+
+class DDQN:
+    def solve(self, engine):
+        pass
+
+
+class HexAI:
+
+    @staticmethod
+    def MonteCarlo():
+        return MonteCarlo()
+
+    @staticmethod
+    def DDQN():
+        return DDQN()
 
 
 
