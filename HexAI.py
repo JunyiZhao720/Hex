@@ -19,7 +19,5 @@ class HexAI:
     def DDQN():
         return DDQN()
 
-
-
 if __name__ == '__main__':
     print('Hello World')
