@@ -1,11 +1,14 @@
 
-
+# Constructor
+# A = HexEngine(board=None, human_color_red=False, round=-1, useGui=False)
+# A.init(n=3, human_color_red=False, human_move_first=True, gui=HexGui(), ai=HexAI.DDQN(), useGui=True)
 
 class HexEngine:
+    # Only for clone use
     def __init__(self, board, human_color_red, round, useGui = False):
         self.board = board
         self.gui = None
-        self.round = round
+        self.round = round          # represents which color to run
         self.useGui = useGui
 
         # 1 for red, 2 for blue
@@ -75,6 +78,7 @@ class HexEngine:
 
     # Clone itself
     # use useGui is False, don't copy gui
+    # return HexEngine
     def clone(self, useGui=False):
         pass
 
