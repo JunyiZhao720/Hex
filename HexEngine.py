@@ -63,6 +63,15 @@ class HexEngine:
     def wining_check(self):
         pass
 
+    # return available moves as a list
+    def available_moves(self):
+        moves = []
+        for x in range(1, self.n + 1):
+            for y in range(1, self.n + 1):
+                if not self.board[x][y]:
+                    moves.append((x, y))
+        return moves
+
     # Input:(x, y)
     # 1. update board point, make the (x,y) point on the board based on self.round
     # 2. update self.round to the next

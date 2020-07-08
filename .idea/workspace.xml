@@ -33,13 +33,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="15" />
-          <entry key="py" value="3002" />
+          <entry key="py" value="3198" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="15" />
-          <entry key="Python" value="3002" />
+          <entry key="Python" value="3198" />
         </counts>
       </usages-collector>
     </session>
@@ -66,12 +66,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HexEngine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+            <state relative-caret-position="589">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
               <folding>
-                <marker date="1594241467087" expanded="true" signature="307:662" ph="..." />
-                <marker date="1594241467087" expanded="true" signature="1767:1773" ph="..." />
-                <marker date="1594241467087" expanded="true" signature="2096:2115" ph="..." />
+                <marker date="1594243492197" expanded="true" signature="307:662" ph="..." />
+                <marker date="1594243492197" expanded="true" signature="1767:1773" ph="..." />
+                <marker date="1594243492197" expanded="true" signature="1998:2208" ph="..." />
               </folding>
             </state>
           </provider>
@@ -80,10 +80,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HexAI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="285">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
-                <marker date="1594241248437" expanded="true" signature="257:261" ph="..." />
+                <marker date="1594243299651" expanded="true" signature="257:261" ph="..." />
               </folding>
             </state>
           </provider>
@@ -227,22 +227,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HexEngine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+        <state relative-caret-position="589">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
           <folding>
-            <marker date="1594241467087" expanded="true" signature="307:662" ph="..." />
-            <marker date="1594241467087" expanded="true" signature="1767:1773" ph="..." />
-            <marker date="1594241467087" expanded="true" signature="2096:2115" ph="..." />
+            <marker date="1594243492197" expanded="true" signature="307:662" ph="..." />
+            <marker date="1594243492197" expanded="true" signature="1767:1773" ph="..." />
+            <marker date="1594243492197" expanded="true" signature="1998:2208" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HexAI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="285">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
-            <marker date="1594241248437" expanded="true" signature="257:261" ph="..." />
+            <marker date="1594243299651" expanded="true" signature="257:261" ph="..." />
           </folding>
         </state>
       </provider>
