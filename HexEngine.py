@@ -63,7 +63,14 @@ class HexEngine:
     def wining_check(self):
         pass
 
+    # Input:(x, y)
+    # 1. update board point, make the (x,y) point on the board based on self.round
+    # 2. update self.round to the next
+    def move(self, point):
+        pass
+
     # Next round
+    # call self.move accordingly
     def next(self):
         # TODO: human turn
         if self.round == self.human_color:
