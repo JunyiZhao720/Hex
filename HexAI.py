@@ -1,14 +1,6 @@
 
 
 
-class MonteCarlo:
-    def solve(self, engine):
-        pass
-
-class DDQN:
-    def solve(self, engine):
-        pass
-
 class HexAI:
 
     @staticmethod
@@ -18,6 +10,18 @@ class HexAI:
     @staticmethod
     def DDQN():
         return DDQN()
+
+class MonteCarlo:
+
+
+    def solve(self, engine):
+        self.engine = engine
+
+class DDQN:
+    def solve(self, engine):
+        pass
+
+
 
 
 
