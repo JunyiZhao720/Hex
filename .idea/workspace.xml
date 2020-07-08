@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf189dfa-0233-4dda-8c4c-b3c9eaf97e9e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HexEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexEngine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HexAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexAI.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,27 +63,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HexEngine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="95">
+              <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
               <folding>
-                <marker date="1594243492197" expanded="true" signature="307:662" ph="..." />
-                <marker date="1594243492197" expanded="true" signature="1767:1773" ph="..." />
-                <marker date="1594243492197" expanded="true" signature="1998:2208" ph="..." />
+                <marker date="1594243672681" expanded="true" signature="307:662" ph="..." />
+                <marker date="1594243672681" expanded="true" signature="1767:1773" ph="..." />
+                <marker date="1594243672681" expanded="true" signature="1998:2208" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HexAI.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
-                <marker date="1594243299651" expanded="true" signature="257:261" ph="..." />
+                <marker date="1594243885430" expanded="true" signature="350:351" ph="..." />
               </folding>
             </state>
           </provider>
@@ -227,12 +227,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HexEngine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="95">
+          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
           <folding>
-            <marker date="1594243492197" expanded="true" signature="307:662" ph="..." />
-            <marker date="1594243492197" expanded="true" signature="1767:1773" ph="..." />
-            <marker date="1594243492197" expanded="true" signature="1998:2208" ph="..." />
+            <marker date="1594243672681" expanded="true" signature="307:662" ph="..." />
+            <marker date="1594243672681" expanded="true" signature="1767:1773" ph="..." />
+            <marker date="1594243672681" expanded="true" signature="1998:2208" ph="..." />
           </folding>
         </state>
       </provider>
@@ -240,9 +240,9 @@
     <entry file="file://$PROJECT_DIR$/HexAI.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
           <folding>
-            <marker date="1594243299651" expanded="true" signature="257:261" ph="..." />
+            <marker date="1594243885430" expanded="true" signature="350:351" ph="..." />
           </folding>
         </state>
       </provider>
