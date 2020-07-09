@@ -15,13 +15,6 @@ class HexEngine:
         self.AI_color = -1
         self.round = -1
 
-    # Generate (n + 1) * (n + 1) sized board
-    def _init_board(self):
-        board = []
-        for i in range(self.n + 1):
-            board.append([0] * (self.n + 1))
-        return board
-
     # Two algorithms but only choose one
     def _BFS(self):
         pass
@@ -29,6 +22,13 @@ class HexEngine:
         pass
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
+    @staticmethod
+    # Generate (n + 1) * (n + 1) sized board
+    def init_board(n):
+        board = []
+        for i in range(n + 1):
+            board.append([0] * (n + 1))
+        return board
 
     @staticmethod
     # Object initialization
@@ -36,7 +36,7 @@ class HexEngine:
     def create_new(n, human_color_red, human_move_first, gui, ai, useGui = True):
         instance = HexEngine()
         instance.n = n                                      # size of board
-        instance.board = instance._init_board()             # initialize board
+        instance.board = HexEngine.init_board(n)             # initialize board
         instance.gui = gui
         instance.useGui = useGui
         instance.ai = ai
@@ -73,6 +73,12 @@ class HexEngine:
             instance.human_color = 2
             instance.AI_color = 1
         return instance
+
+    @staticmethod
+    # TODO: write a constructor that only accepts AI as players
+    def create_AI_only():
+        instance = HexEngine()
+        pass
 
     # Check if any side wins
     # return None if no side wins
