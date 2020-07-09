@@ -1,5 +1,7 @@
 import numpy as np
 import time
+from HexEngine import HexEngine
+
 
 class HexAI:
 
@@ -72,8 +74,7 @@ class DDQN:
         pass
 
 
-
-
-
 if __name__ == '__main__':
+
+    model = HexEngine.create_exist(board=None, human_color_red=True, round=2, useGui = False)
     print('Hello World')

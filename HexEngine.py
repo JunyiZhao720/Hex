@@ -1,23 +1,19 @@
 
-# Constructor
-# A = HexEngine(board=None, human_color_red=False, round=-1, useGui=False)
-# A.init(n=3, human_color_red=False, human_move_first=True, gui=HexGui(), ai=HexAI.DDQN(), useGui=True)
+
 
 class HexEngine:
-    # Only for clone use
-    def __init__(self, board, human_color_red, round, useGui = False):
-        self.board = board
+    # When constructing the class, use HexEngine.create_new()
+    # When need copying, use HexEngine.create_exist()
+    # Notice the default constructor should not be used explicitly!!!
+    def __init__(self):
+        self.n = -1
+        self.board = None
         self.gui = None
-        self.round = round          # represents which color to run
-        self.useGui = useGui
-
-        # 1 for red, 2 for blue
-        if human_color_red:
-            self.human_color = 1
-            self.AI_color = 2
-        else:
-            self.human_color = 2
-            self.AI_color = 1
+        self.useGui = False
+        self.ai = None
+        self.human_color = -1
+        self.AI_color = -1
+        self.round = -1
 
     # Generate (n + 1) * (n + 1) sized board
     def _init_board(self):
@@ -34,27 +30,49 @@ class HexEngine:
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
 
-    # First time run, needs to initialize itself
-    def init(self,n, human_color_red, human_move_first, gui, ai, useGui = True):
-        self.n = n                                  # size of board
-        self.board = self._init_board()             # initialize board
-        self.gui = gui
-        self.useGui = useGui
-        self.ai = ai
+    @staticmethod
+    # Object initialization
+    # first time run, needs to initialize itself
+    def create_new(n, human_color_red, human_move_first, gui, ai, useGui = True):
+        instance = HexEngine()
+        instance.n = n                                      # size of board
+        instance.board = instance._init_board()             # initialize board
+        instance.gui = gui
+        instance.useGui = useGui
+        instance.ai = ai
 
         # 1 for red, 2 for blue
         if human_color_red:
-            self.human_color = 1
-            self.AI_color = 2
+            instance.human_color = 1
+            instance.AI_color = 2
         else:
-            self.human_color = 2
-            self.AI_color = 1
+            instance.human_color = 2
+            instance.AI_color = 1
 
         # if human should go first
         if human_move_first:
-            self.round = self.human_color
+            instance.round = instance.human_color
         else:
-            self.round = self.AI_color
+            instance.round = instance.AI_color
+        return instance
+
+    @staticmethod
+    # Only for clone use
+    def create_exist(board, human_color_red, round, useGui = False):
+        instance = HexEngine()
+        instance.board = board
+        instance.gui = None
+        instance.round = round          # represents which color to run
+        instance.useGui = useGui
+
+        # 1 for red, 2 for blue
+        if human_color_red:
+            instance.human_color = 1
+            instance.AI_color = 2
+        else:
+            instance.human_color = 2
+            instance.AI_color = 1
+        return instance
 
     # Check if any side wins
     # return None if no side wins
@@ -100,3 +118,4 @@ class HexEngine:
 
 if __name__ == '__main__':
     print('Hello World')
+    A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None, useGui = True)
