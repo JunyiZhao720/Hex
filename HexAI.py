@@ -2,10 +2,16 @@
 
 
 class MonteCarlo:
+    def clone(self):
+        pass
+
     def solve(self, engine):
         pass
 
 class DDQN:
+    def clone(self):
+        pass
+
     def solve(self, engine):
         pass
 

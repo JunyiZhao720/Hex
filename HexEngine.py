@@ -33,12 +33,11 @@ class HexEngine:
     @staticmethod
     # Object initialization
     # first time run, needs to initialize itself
-    def create_new(n, human_color_red, human_move_first, gui, ai, useGui = True):
+    def create_new(n, human_color_red, human_move_first, gui, ai):
         instance = HexEngine()
         instance.n = n                                      # size of board
         instance.board = HexEngine.init_board(n)             # initialize board
         instance.gui = gui
-        instance.useGui = useGui
         instance.ai = ai
 
         # 1 for red, 2 for blue
@@ -58,12 +57,13 @@ class HexEngine:
 
     @staticmethod
     # Only for clone use
-    def create_exist(board, human_color_red, round, useGui = False):
+    def create_exist(board, human_color_red, round, gui, ai):
         instance = HexEngine()
         instance.board = board
-        instance.gui = None
+        instance.n = len(board) - 1
         instance.round = round          # represents which color to run
-        instance.useGui = useGui
+        instance.gui = gui
+        instance.ai = ai
 
         # 1 for red, 2 for blue
         if human_color_red:
@@ -119,9 +119,16 @@ class HexEngine:
     # Clone itself
     # use useGui is False, don't copy gui
     # return HexEngine
-    def clone(self, useGui=False):
-        pass
+    def clone(self, useGui = False, useAI = False):
+        board = [row[:] for row in self.board]
+        gui = None
+        ai = None
+        if useGui:
+            gui = self.gui.clone()
+        if useAI:
+            ai = self.ai.clone()
+        return HexEngine.create_exist(board=board,  human_color_red=self.human_color == 1, round=self.round, gui=gui, ai=ai)
 
 if __name__ == '__main__':
     print('Hello World')
-    A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None, useGui = True)
+    A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None)

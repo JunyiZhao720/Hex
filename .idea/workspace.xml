@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf189dfa-0233-4dda-8c4c-b3c9eaf97e9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/HexAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HexEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexEngine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HexGui.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexGui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +20,10 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,13 +39,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="15" />
-          <entry key="py" value="3769" />
+          <entry key="py" value="4246" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="15" />
-          <entry key="Python" value="3769" />
+          <entry key="Python" value="4246" />
         </counts>
       </usages-collector>
     </session>
@@ -53,37 +55,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HexGui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            <state relative-caret-position="529">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
               <folding>
-                <marker date="1594081013112" expanded="true" signature="16:21" ph="..." />
-                <marker date="1594081013112" expanded="true" signature="64:424" ph="..." />
-                <marker date="1594081013112" expanded="true" signature="424:1065" ph="..." />
-                <marker date="1594081013112" expanded="true" signature="528:533" ph="..." />
-                <marker date="1594081013112" expanded="true" signature="877:1022" ph="..." />
-                <marker date="1594081013112" expanded="true" signature="1204:1223" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HexEngine.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-              <folding>
-                <marker date="1594329616637" expanded="true" signature="2397:2416" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="16:21" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="64:424" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="424:1065" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="528:533" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="877:1022" ph="..." />
+                <marker date="1594341437484" expanded="true" signature="1204:1223" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HexEngine.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="757">
+              <caret line="133" column="96" selection-start-line="133" selection-start-column="96" selection-end-line="133" selection-end-column="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HexAI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="114">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+              <folding>
+                <marker date="1594341544600" expanded="true" signature="41:64" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,9 +106,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Gui.py" />
+        <option value="$PROJECT_DIR$/HexEngine.py" />
         <option value="$PROJECT_DIR$/HexGui.py" />
         <option value="$PROJECT_DIR$/HexAI.py" />
-        <option value="$PROJECT_DIR$/HexEngine.py" />
       </list>
     </option>
   </component>
@@ -208,7 +210,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15458423" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15618336" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -238,34 +240,34 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/HexEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="757">
+          <caret line="133" column="96" selection-start-line="133" selection-start-column="96" selection-end-line="133" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HexGui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        <state relative-caret-position="529">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
           <folding>
-            <marker date="1594081013112" expanded="true" signature="16:21" ph="..." />
-            <marker date="1594081013112" expanded="true" signature="64:424" ph="..." />
-            <marker date="1594081013112" expanded="true" signature="424:1065" ph="..." />
-            <marker date="1594081013112" expanded="true" signature="528:533" ph="..." />
-            <marker date="1594081013112" expanded="true" signature="877:1022" ph="..." />
-            <marker date="1594081013112" expanded="true" signature="1204:1223" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="16:21" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="64:424" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="424:1065" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="528:533" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="877:1022" ph="..." />
+            <marker date="1594341437484" expanded="true" signature="1204:1223" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HexAI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HexEngine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        <state relative-caret-position="114">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding>
-            <marker date="1594329616637" expanded="true" signature="2397:2416" ph="..." />
+            <marker date="1594341544600" expanded="true" signature="41:64" ph="..." />
           </folding>
         </state>
       </provider>
