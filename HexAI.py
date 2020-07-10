@@ -15,6 +15,7 @@ class HexAI:
 
 if __name__ == '__main__':
     solver = HexAI.MonteCarlo(AI_color=2)
-    model = HexEngine.create_exist(board=HexEngine.init_board(n=5), human_color_red=True, round=2, useGui = False)
+    engine = HexEngine.create_exist(board=HexEngine.init_board(n=5), human_color_red=True, round=2, gui=None, ai=None)
+    solver.solve(engine=engine, verbose=True)
 
     print('Hello World')

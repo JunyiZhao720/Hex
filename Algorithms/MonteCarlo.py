@@ -17,7 +17,7 @@ class MonteCarlo:
         for i in range(n):
             # Check wining
             win_result  = engine_copy.wining_check()
-            if win_result != 0:
+            if win_result:
                 if win_result == self.AI_color:
                     return 1
                 else:
@@ -33,7 +33,7 @@ class MonteCarlo:
     def _play(self, point, engine, n=10, n_jobs=1):
         result = 0
         for i in range(n):
-            result += self._play_single(point=point, engine_copy=engine.copy())
+            result += self._play_single(point=point, engine_copy=engine.clone())
 
         return result / (n * n_jobs)
 
@@ -41,7 +41,7 @@ class MonteCarlo:
     def solve(self, engine, verbose=False):
         self.engine = engine
         moves = engine.available_moves()
-        prob = np.zeros((1, len(moves)))
+        prob = np.zeros((len(moves), 1))
 
         time_used= time.time()
         for i in range(len(moves)):

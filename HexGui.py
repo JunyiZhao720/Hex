@@ -46,6 +46,11 @@ class HexGui:
     def display(self):
         pass
 
+    # Clone the current object
+    def clone(self):
+        board = [row[:] for row in self.board]
+        return HexGui(board=board, human_color_red=self.human_color==1)
+
 
 if __name__ == '__main__':
     print('Hello World')
