@@ -9,7 +9,6 @@ class HexEngine:
         self.n = -1
         self.board = None
         self.gui = None
-        self.useGui = False
         self.ai = None
         self.human_color = -1
         self.AI_color = -1
@@ -123,9 +122,9 @@ class HexEngine:
         board = [row[:] for row in self.board]
         gui = None
         ai = None
-        if useGui:
+        if useGui and self.gui:
             gui = self.gui.clone()
-        if useAI:
+        if useAI and self.ai:
             ai = self.ai.clone()
         return HexEngine.create_exist(board=board,  human_color_red=self.human_color == 1, round=self.round, gui=gui, ai=ai)
 
