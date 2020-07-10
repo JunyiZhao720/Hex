@@ -1,10 +1,13 @@
 import numpy as np
 import time
+from multiprocessing import Pool
 
 class MonteCarlo:
-    def __init__(self, AI_color):
+    def __init__(self, AI_color, move_iter = 100, n_jobs=2):
         self.AI_color = AI_color
         self.engine = None
+        self.move_iter = move_iter
+        self.n_jobs = n_jobs
 
     # Play current single move
     # Return 1 if AI wins
@@ -28,15 +31,25 @@ class MonteCarlo:
             moves.remove(point)
             engine_copy.move(point)
 
+        print('Warning: MonteCarlo._play_single runs out of moves, will return 0.')
+
+        return 0
+
     # Play multi-processing moves
-    # TODO multi-processing
-    def _play(self, point, engine, n=10, n_jobs=1):
-        result = 0
-        for i in range(n):
-            result += self._play_single(point=point, engine_copy=engine.clone())
+    def _play(self, point, engine):
+        with Pool(self.n_jobs) as pool:
+            results = pool.starmap(self._play_single, [[point, engine.clone()] for i in range(self.move_iter)])
+            pool.close()
+            pool.join()
+        return sum(results) / self.move_iter
 
-        return result / (n * n_jobs)
+    #-------------------------------------PUBLIC FIELD-----------------------------------------
 
+    def clone(self):
+        instance = MonteCarlo(self.AI_color)
+        instance.engine = self.engine.clone(useGui = True, useAI = True)
+
+        return instance
 
     def solve(self, engine, verbose=False):
         self.engine = engine
@@ -48,6 +61,7 @@ class MonteCarlo:
             prob[i] = self._play(point=moves[i], engine=engine)
 
         time_used = time.time() - time_used
+        print(prob)
         if verbose:
             print("MonteCarlo used " + str(time_used) + " seconds to solve the answer!")
         return moves[np.argmax(prob)]
