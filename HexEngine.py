@@ -10,6 +10,7 @@ class HexEngine:
         self.board = None
         self.gui = None
         self.ai = None
+        self.ai_ = None
         self.human_color = -1
         self.AI_color = -1
         self.round = -1
@@ -37,7 +38,7 @@ class HexEngine:
         copy = self.board.copy()
         length = self.n
         for i in range(length + 1):
-            if(copy[0][i] == 1):
+            if(copy[0][i] == target):
                 stack.insert(0, [0, i])
                 break
         if(len(stack) == 0):
@@ -53,20 +54,20 @@ class HexEngine:
                 return True
 
             if row + 1 <= length:
-                if copy[row+1][col] == 1:
+                if copy[row+1][col] == target:
                     stack.insert(0, [row+1, col])
-                if col - 1 >= 0 and copy[row+1][col-1] == 1:
+                if col - 1 >= 0 and copy[row+1][col-1] == target:
                     stack.insert(0, [row + 1, col - 1])
             if row - 1 >= 0:
-                if copy[row-1][col] == 1:
+                if copy[row-1][col] == target:
                     stack.insert(0, [row-1, col])
-                if col + 1 <= length and copy[row -1][col+1] == 1:
+                if col + 1 <= length and copy[row -1][col+1] == target:
                     stack.insert(0, [row - 1, col+1])
             if col - 1 >= 0:
-                if copy[row][col-1] == 1:
+                if copy[row][col-1] == target:
                     stack.insert(0, [row, col-1])
             if col + 1 <= length:
-                if copy[row][col+1] == 1:
+                if copy[row][col+1] == target:
                     stack.insert(0, [row, col+1])
 
 
@@ -126,11 +127,29 @@ class HexEngine:
             instance.AI_color = 1
         return instance
 
+
     @staticmethod
     # TODO: write a constructor that only accepts AI as players
-    def create_AI_only():
+    def create_AI_only(n, AI_1_red, AI_1_first, gui, ai):
         instance = HexEngine()
-        pass
+        instance.board = HexEngine.init_board(n)
+        instance.n = n
+        instance.gui = gui
+        instance.ai = ai
+        instance.ai_ = ai
+
+        if AI_1_red:
+            instance.human_color = 1   #human_color == ai color
+            instance.AI_color = 2      #AI_color == ai_ color
+        else:
+            instance.human_color = 2
+            instance.AI_color = 1
+
+        if AI_1_first:
+            instance.round = instance.human_color
+        else:
+            instance.round = instance.AI_color
+        return instance
 
     # Check if any side wins
     # return None if no side wins
@@ -140,6 +159,7 @@ class HexEngine:
         red = self._BFS(True)
         self.reverse()
         blue = self._BFS(False)
+        self.reverse()
         if red:
             return 1
         elif blue:
@@ -164,23 +184,28 @@ class HexEngine:
         col = point[1]
         if self.round == self.human_color:
             self.board[row][col] = self.human_color
+            self.round = self.AI_color
         if self.round == self.AI_color:
             self.board[row][col] = self.AI_color
-        next(self)
+            self.round = self.human_color
 
     # Next round
     # call self.move accordingly
     def next(self):
         # TODO: human turn
         if self.round == self.human_color:
-            self.round = self.AI_color
+            point = self.gui.next_human()
+            self.move(point)
+
         else:
         # TODO: AI turn
-            self.round = self.human_color
+            point = self.ai.solve()
+            self.move(point)
+
 
     # Update gui and display
     def update_gui(self):
-        self.gui.update()
+        self.gui.update(self.board)
         self.gui.display()
 
     # Clone itself

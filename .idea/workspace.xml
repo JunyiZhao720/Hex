@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf189dfa-0233-4dda-8c4c-b3c9eaf97e9e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Hex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hex.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HexEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexEngine.py" afterDir="false" />
     </list>
@@ -110,7 +108,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1594047484167</updated>
-      <workItem from="1594654192421" duration="14295000" />
+      <workItem from="1594654192421" duration="14559000" />
+      <workItem from="1594861284349" duration="1138000" />
     </task>
     <servers />
   </component>
@@ -122,7 +121,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
