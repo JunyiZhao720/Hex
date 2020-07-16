@@ -23,7 +23,8 @@ class HexGui:
     # receive if human move first
     # receive what kind of AI to use
     # receive if only AI plays
-    # return n, human_color_red, human_move_first, AI_type
+
+    # return n, if_AI_only, human_color_red, human_move_first, AI_type1, AI_type2, AI1_color, AI2_color
     def configuration_gui():
         pass
 
