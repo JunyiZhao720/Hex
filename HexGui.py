@@ -21,54 +21,52 @@ class HexGui:
 
     # return n, if_AI_only, human_color_red, human_move_first, AI_type1, AI_type2, AI1_color, AI2_color
     def configuration_gui(self): # for zcx to initialize; AI type; human_move_first, if_AI_only
-        while(True):
-            n = input("Please set the size: ")
-            if_AI_only = input("Only AI, please type True or False: ")
-            if_AI_only = if_AI_only.lower()
-            # 接受 if_AI_only
-            if if_AI_only == 'true':
-                # 接受2个AI 输入的字符串
-                print("Please type two AI types you want to use")
-                AI_type1 = input("First AI type: ")
-                AI_type2 = input("Second AI type: ")
-                break
-            elif if_AI_only == 'false':
-                # 接受1个AI
-                print("Please only one AI type you want to use")
-                if_AI_only = input("AI type: ")
-                break
-            else:
-                print("Invalid input")
 
-            human_color_red = input("Human color is red, please type True or False: ")
-            human_color_red = human_color_red.lower()
-            if human_color_red != 'true' or 'false':
-                print("Invalid input")
+        n = input("Please set the size: ")
+        if_AI_only = input("Only AI, please type True or False: ")
+        if_AI_only = if_AI_only.lower()
+        # 接受 if_AI_only
+        if if_AI_only == 'true':
+            # 接受2个AI 输入的字符串
+            print("Please type two AI types you want to use")
+            AI_type1 = input("First AI type: ")
+            AI_type2 = input("Second AI type: ")
+        elif if_AI_only == 'false':
+            # 接受1个AI
+            print("Please only one AI type you want to use")
+            if_AI_only = input("AI type: ")
+        else:
+            print("Invalid input")
 
-            human_move_first = input("Human move first, please type True or False: ")
-            human_move_first = human_move_first.lower()
-            if human_move_first != 'true' or 'false':
-                print("Invalid input")
+        human_color_red = input("Human color is red, please type True or False: ")
+        human_color_red = human_color_red.lower()
+        if human_color_red != 'true' or 'false':
+            print("Invalid input")
 
-            AI_type1 = input("Please type DDQN or DQN or Monte Carlo for AI type1: ")
-            AI_type1 = AI_type1.lower()
-            if AI_type1 != 'DDQN' or 'DQN' or 'Monte Carlo':
-                print("Invalid input")
+        human_move_first = input("Human move first, please type True or False: ")
+        human_move_first = human_move_first.lower()
+        if human_move_first != 'true' or 'false':
+            print("Invalid input")
 
-            AI_type2 = input("Please type DDQN or DQN or Monte Carlo for AI type2: ")
-            AI_type2 = AI_type2.lower()
-            if AI_type2 != 'DDQN' or 'DQN' or 'Monte Carlo':
-                print("Invalid input")
+        AI_type1 = input("Please type DDQN or DQN or Monte Carlo for AI type1: ")
+        AI_type1 = AI_type1.lower()
+        if AI_type1 != 'DDQN' or 'DQN' or 'Monte Carlo':
+            print("Invalid input")
 
-            AI1_color = input("Please set the color for AI 1: ")
-            AI1_color = AI1_color.lower()
-            if AI1_color != 'blue' or 'red':
-                print("Invalid input")
+        AI_type2 = input("Please type DDQN or DQN or Monte Carlo for AI type2: ")
+        AI_type2 = AI_type2.lower()
+        if AI_type2 != 'DDQN' or 'DQN' or 'Monte Carlo':
+            print("Invalid input")
 
-            AI2_color = input("Please set the color for AI 2: ")
-            AI2_color = AI2_color.lower()
-            if AI2_color != 'blue' or 'red':
-                print("Invalid input")
+        AI1_color = input("Please set the color for AI 1: ")
+        AI1_color = AI1_color.lower()
+        if AI1_color != 'blue' or 'red':
+            print("Invalid input")
+
+        AI2_color = input("Please set the color for AI 2: ")
+        AI2_color = AI2_color.lower()
+        if AI2_color != 'blue' or 'red':
+            print("Invalid input")
 
         return n, if_AI_only, human_color_red, human_move_first, AI_type1, AI_type2, AI1_color, AI2_color
 
