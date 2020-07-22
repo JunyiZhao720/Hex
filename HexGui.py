@@ -1,5 +1,10 @@
+from HexEngine import HexEngine
 
 class HexGui:
+    red = "\033[31m"
+    blue = "\033[36m"
+    default = '\033[39m'
+
     def __init__(self, board, human_color_red):
         self.n = len(board)                                  # size of board
         self.board = board                                   # initialize board
@@ -11,6 +16,13 @@ class HexGui:
         else:
             self.human_color = 2
             self.AI_color = 1
+
+    def _star_color(self, value):
+        if value == 1:
+            return HexGui.red + '*' + HexGui.default
+        if value == 2:
+            return HexGui.blue + '*' + HexGui.default
+        return '*'
 
     # setting GUI
     # receive size n
@@ -80,33 +92,28 @@ class HexGui:
     # Receive and update the current board
     # 接受一个棋盘，复制copy到本地
     def update(self, board):
-        board = board.copy()
-        pass
+        self.board = [row[:] for row in board]
 
     # Receive (x, y) from human for the next chess move
     # Return (x,y) tuple
     def next_human(self):
         x = input("Please enter x coordinate: ")
         y = input("Please enter y coordinate: ")
-        xy_coord = (x,y)
-        return xy_coord
+
+        return (x, y)
 
     # Display the current state of Hex
     def display(self):
-        i = 1
-        w = int(input('Please number of rows: '))
-        c = int(input('Please number of columns: '))
-        while i <= w:
-            j = 1
-            while j <= i - 1:
-                print(" ", end=" ")
-                j += 1
-            j = 1
-            while j <= c:
-                print("*", end=" ")
-                j += 1
+        n = len(self.board) - 1
+
+        for i in range(1, n + 1):
+            for k in range(i):
+                print('  ', end='')
+            # print stars
+            print(self._star_color(self.board[i][1]), end='')
+            for j in range(2, n + 1):
+                print('   ' + self._star_color(self.board[i][j]), end='')
             print()
-            i = i + 1
 
     # Clone the current object
     def clone(self):
@@ -116,8 +123,11 @@ class HexGui:
 
 if __name__ == '__main__':
     #print('Hello World')
-    a = HexGui
+    a = HexGui(HexEngine.init_board(8), human_color_red=True)
+    a.board[2][3] = 2
+    a.board[2][6] = 1
+    a.display()
     #a.display(a)
-    a.configuration_gui(a)
+    #a.configuration_gui(a)
 
 
