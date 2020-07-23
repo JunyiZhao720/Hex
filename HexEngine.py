@@ -14,9 +14,62 @@ class HexEngine:
         self.AI_color = -1
         self.round = -1
 
+        self.r = 1
+        self.b = 2
+
+    def reverse(self):
+        res = []
+        for i in range(len(self.board)):
+            tem = []
+            for j in range(len(self.board)):
+                tem.append(self.board[i][j])
+            res.append(tem)
+        self.board = res
+
     # Two algorithms but only choose one
-    def _BFS(self):
-        pass
+    def _BFS(self, red):
+        target = 0
+        if red:
+            target = self.r
+        else:
+            target = self.b
+        stack = []
+        copy = self.board.copy()
+        length = self.n
+        for i in range(length + 1):
+            if(copy[0][i] == 1):
+                stack.insert(0, [0, i])
+                break
+        if(len(stack) == 0):
+            return False
+
+        while len(stack) != 0:
+            node = stack.pop(0)
+            row = node[0]
+            col = node[1]
+            copy[row][col] = -1
+
+            if row == length:
+                return True
+
+            if row + 1 <= length:
+                if copy[row+1][col] == 1:
+                    stack.insert(0, [row+1, col])
+                if col - 1 >= 0 and copy[row+1][col-1] == 1:
+                    stack.insert(0, [row + 1, col - 1])
+            if row - 1 >= 0:
+                if copy[row-1][col] == 1:
+                    stack.insert(0, [row-1, col])
+                if col + 1 <= length and copy[row -1][col+1] == 1:
+                    stack.insert(0, [row - 1, col+1])
+            if col - 1 >= 0:
+                if copy[row][col-1] == 1:
+                    stack.insert(0, [row, col-1])
+            if col + 1 <= length:
+                if copy[row][col+1] == 1:
+                    stack.insert(0, [row, col+1])
+
+
     def _DFS(self):
         pass
 
@@ -84,7 +137,15 @@ class HexEngine:
     # return 1 if red wins
     # return 2 if blue wins
     def wining_check(self):
-        pass
+        red = self._BFS(True)
+        self.reverse()
+        blue = self._BFS(False)
+        if red:
+            return 1
+        elif blue:
+            return 2
+        else:
+            return None
 
     # return available moves as a list
     def available_moves(self):
@@ -99,21 +160,28 @@ class HexEngine:
     # 1. update board point, make the (x,y) point on the board based on self.round
     # 2. update self.round to the next
     def move(self, point):
-        pass
+        row = point[0]
+        col = point[1]
+        if self.round == self.human_color:
+            self.board[row][col] = self.human_color
+        if self.round == self.AI_color:
+            self.board[row][col] = self.AI_color
+        next(self)
 
     # Next round
     # call self.move accordingly
     def next(self):
         # TODO: human turn
         if self.round == self.human_color:
-            pass
+            self.round = self.AI_color
         else:
         # TODO: AI turn
-            pass
+            self.round = self.human_color
 
     # Update gui and display
     def update_gui(self):
-        pass
+        self.gui.update()
+        self.gui.display()
 
     # Clone itself
     # use useGui is False, don't copy gui
