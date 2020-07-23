@@ -1,5 +1,6 @@
 
-
+from HexGui import HexGui
+from HexAI import HexAI
 
 class HexEngine:
     # When constructing the class, use HexEngine.create_new()
@@ -19,11 +20,16 @@ class HexEngine:
         self.b = 2
 
     def reverse(self):
-        res = []
-        for i in range(len(self.board)):
-            tem = []
-            for j in range(len(self.board)):
+        res = [[0] * (self.n + 1)]
+
+        j = self.n
+        while j >= 1:
+            tem = [0]
+            i = self.n
+            while i >= 1:
                 tem.append(self.board[i][j])
+                i -= 1
+            j -= 1
             res.append(tem)
         self.board = res
 
@@ -35,13 +41,12 @@ class HexEngine:
         else:
             target = self.b
         stack = []
-        copy = self.board.copy()
-        length = self.n
+        copy = [row[1:] for row in self.board[1:]]
+        length = len(copy) - 1
         for i in range(length + 1):
-            if(copy[0][i] == target):
+            if (copy[0][i] == target):
                 stack.insert(0, [0, i])
-                break
-        if(len(stack) == 0):
+        if (len(stack) == 0):
             return False
 
         while len(stack) != 0:
@@ -52,23 +57,22 @@ class HexEngine:
 
             if row == length:
                 return True
-
             if row + 1 <= length:
-                if copy[row+1][col] == target:
-                    stack.insert(0, [row+1, col])
-                if col - 1 >= 0 and copy[row+1][col-1] == target:
+                if copy[row + 1][col] == target:
+                    stack.insert(0, [row + 1, col])
+                if col - 1 >= 0 and copy[row + 1][col - 1] == target:
                     stack.insert(0, [row + 1, col - 1])
             if row - 1 >= 0:
-                if copy[row-1][col] == target:
-                    stack.insert(0, [row-1, col])
-                if col + 1 <= length and copy[row -1][col+1] == target:
-                    stack.insert(0, [row - 1, col+1])
+                if copy[row - 1][col] == target:
+                    stack.insert(0, [row - 1, col])
+                if col + 1 <= length and copy[row - 1][col + 1] == target:
+                    stack.insert(0, [row - 1, col + 1])
             if col - 1 >= 0:
-                if copy[row][col-1] == target:
-                    stack.insert(0, [row, col-1])
+                if copy[row][col - 1] == target:
+                    stack.insert(0, [row, col - 1])
             if col + 1 <= length:
-                if copy[row][col+1] == target:
-                    stack.insert(0, [row, col+1])
+                if copy[row][col + 1] == target:
+                    stack.insert(0, [row, col + 1])
 
 
     def _DFS(self):
@@ -179,15 +183,21 @@ class HexEngine:
     # Input:(x, y)
     # 1. update board point, make the (x,y) point on the board based on self.round
     # 2. update self.round to the next
-    def move(self, point):
+    def move(self, point, useGui=True):
         row = point[0]
         col = point[1]
         if self.round == self.human_color:
             self.board[row][col] = self.human_color
+            if useGui:
+                self.update_gui()
             self.round = self.AI_color
-        if self.round == self.AI_color:
+        else:
             self.board[row][col] = self.AI_color
+            if useGui:
+                self.update_gui()
             self.round = self.human_color
+
+
 
     # Next round
     # call self.move accordingly
@@ -196,11 +206,11 @@ class HexEngine:
         if self.round == self.human_color:
             point = self.gui.next_human()
             self.move(point)
-
         else:
         # TODO: AI turn
-            point = self.ai.solve()
+            point = self.ai.solve(self)
             self.move(point)
+
 
 
     # Update gui and display
@@ -221,6 +231,25 @@ class HexEngine:
             ai = self.ai.clone()
         return HexEngine.create_exist(board=board,  human_color_red=self.human_color == 1, round=self.round, gui=gui, ai=ai)
 
+    def run(self):
+        while(not self.wining_check()):
+            self.next()
+        print('Done!')
+
 if __name__ == '__main__':
-    print('Hello World')
-    A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None)
+    # GUI Configuration
+    # para = HexGui.configuration_gui()
+    para = (8, False, True, True, 'Monte', 'Monte', 1, 2)
+    ai = None
+    if para[4] == 'Monte':
+        ai_color = 1
+        if para[2]:
+            ai_color = 2
+        ai = HexAI.MonteCarlo(AI_color=ai_color)
+
+    engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui = HexGui(human_color_red=para[2]), ai=ai)
+    #engine.run()
+    #engine.board = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 2, 2, 2, 2, 2, 2, 1], [0, 2, 1, 2, 2, 1, 2, 2, 1], [0, 1, 1, 2, 2, 1, 1, 1, 2], [0, 1, 2, 2, 2, 2, 1, 1, 1], [0, 1, 1, 2, 1, 2, 2, 1, 1], [0, 1, 1, 1, 1, 1, 2, 2, 2], [0, 2, 2, 2, 1, 2, 1, 1, 1], [0, 1, 1, 2, 2, 2, 1, 1, 1]]
+    #print(engine.wining_check())
+    engine.run()
+    #A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None)
