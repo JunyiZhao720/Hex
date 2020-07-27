@@ -112,10 +112,10 @@ class HexGui:
             print("Human color is 2 or blue")
 
     # Receive and update the current board
-    # 接受一个棋盘，复制copy到本地
+    # 接受一个棋盘，直接保存到本地
     def update(self, board):
         self.n = len(board) - 1
-        self.board = [row[:] for row in board]
+        self.board = board
 
     # Receive (x, y) from human for the next chess move
     # Return (x,y) tuple

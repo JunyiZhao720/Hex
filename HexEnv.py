@@ -60,4 +60,4 @@ if __name__ == '__main__':
     gui = HexGui(human_color_red=para[2])
     engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
     env = HexEnv(engine)
-    utils.validate_py_environment(env, episodes=1)
+    utils.validate_py_environment(env, episodes=5)

@@ -79,15 +79,22 @@ class HexEngine:
         point_local = point
         if type(point_local).__module__ == np.__name__:
             if np.size(point_local) == 1:
-                x = point_local // self.n
-                y = point_local % self.n
-                return (x, y)
+                row = point_local // (self.n + 1) + 1
+                col = point_local % self.n
+                if col == 0:
+                    col = self.n
+                return (row, col)
         elif len(point_local) == 2:
             return point_local
 
         print('_decode error:', point_local)
         return (0, 0)
 
+    def _flip(self, round):
+        if round == 2:
+            return 1
+        else:
+            return 2
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
     @staticmethod
     # Generate (n + 1) * (n + 1) sized board
@@ -200,14 +207,12 @@ class HexEngine:
         col = point[1]
         if self.round == self.human_color:
             self.board[row][col] = self.human_color
-            if useGui:
-                self.update_gui()
-            self.round = self.AI_color
         else:
             self.board[row][col] = self.AI_color
-            if useGui:
-                self.update_gui()
-            self.round = self.human_color
+
+        if useGui:
+            self.update_gui()
+        self.round = self._flip(self.round)
 
     # Next round
     # call self.move accordingly
