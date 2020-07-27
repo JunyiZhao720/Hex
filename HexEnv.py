@@ -60,4 +60,22 @@ if __name__ == '__main__':
     gui = HexGui(human_color_red=para[2])
     engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
     env = HexEnv(engine)
-    utils.validate_py_environment(env, episodes=5)
+    #utils.validate_py_environment(env, episodes=5)
+
+    get_new_card_action = np.array(0, dtype=np.int32)
+    end_round_action = np.array(1, dtype=np.int32)
+
+    environment = env
+    time_step = environment.reset()
+    print(time_step)
+    cumulative_reward = time_step.reward
+
+    for _ in range(500):
+        time_step = environment.step(np.random.randint(1, 65))
+        print(time_step)
+        cumulative_reward += time_step.reward
+
+    time_step = environment.step(np.random.randint(1, 65))
+    print(time_step)
+    cumulative_reward += time_step.reward
+    print('Final Reward = ', cumulative_reward)

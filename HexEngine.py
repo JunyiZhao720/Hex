@@ -77,7 +77,7 @@ class HexEngine:
 
     def _decode(self, point):
         point_local = point
-        if type(point_local).__module__ == np.__name__:
+        if type(point_local).__module__ == np.__name__ or type(point_local) == int:
             if np.size(point_local) == 1:
                 row = point_local // (self.n + 1) + 1
                 col = point_local % self.n
