@@ -2,6 +2,7 @@
 from HexGui import HexGui
 from HexAI import HexAI
 
+import numpy as np
 class HexEngine:
     # When constructing the class, use HexEngine.create_new()
     # When need copying, use HexEngine.create_exist()
@@ -74,17 +75,24 @@ class HexEngine:
                 if copy[row][col + 1] == target:
                     stack.insert(0, [row, col + 1])
 
+    def _decode(self, point):
+        point_local = point
+        if type(point_local).__module__ == np.__name__:
+            if np.size(point_local) == 1:
+                x = point_local // self.n
+                y = point_local % self.n
+                return (x, y)
+        elif len(point_local) == 2:
+            return point_local
 
-    def _DFS(self):
-        pass
+        print('_decode error:', point_local)
+        return (0, 0)
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
     @staticmethod
     # Generate (n + 1) * (n + 1) sized board
     def init_board(n):
-        board = []
-        for i in range(n + 1):
-            board.append([0] * (n + 1))
+        board = np.zeros((n+1, n+1), dtype=np.int32)
         return board
 
     @staticmethod
@@ -184,6 +192,10 @@ class HexEngine:
     # 1. update board point, make the (x,y) point on the board based on self.round
     # 2. update self.round to the next
     def move(self, point, useGui=True):
+
+        # TODO
+        point = self._decode(point)
+
         row = point[0]
         col = point[1]
         if self.round == self.human_color:
@@ -197,8 +209,6 @@ class HexEngine:
                 self.update_gui()
             self.round = self.human_color
 
-
-
     # Next round
     # call self.move accordingly
     def next(self):
@@ -210,8 +220,6 @@ class HexEngine:
         # TODO: AI turn
             point = self.ai.solve(self)
             self.move(point)
-
-
 
     # Update gui and display
     def update_gui(self):
@@ -231,10 +239,17 @@ class HexEngine:
             ai = self.ai.clone()
         return HexEngine.create_exist(board=board,  human_color_red=self.human_color == 1, round=self.round, gui=gui, ai=ai)
 
+    # Used to reset the current board for the next round run
+    def reset(self):
+        self.board = HexEngine.init_board(self.n)
+
+
     def run(self):
         while(not self.wining_check()):
             self.next()
         print('Done!')
+
+
 
 if __name__ == '__main__':
     # GUI Configuration
