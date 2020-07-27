@@ -34,8 +34,8 @@ class HexEnv(py_environment.PyEnvironment):
     def _reset(self):
         self._engine.reset()
         self._episode_ended = False
-        # TODO
-        return ts.restart(self._engine.board)
+        self._state = self._engine.board
+        return ts.restart(np.array(self._state, dtype=np.int32))
 
     def _step(self, action):
 
