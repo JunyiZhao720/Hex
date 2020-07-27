@@ -19,60 +19,94 @@ class HexEngine:
         self.r = 1
         self.b = 2
 
-    def reverse(self):
-        res = [[0] * (self.n + 1)]
-
-        j = self.n
-        while j >= 1:
-            tem = [0]
-            i = self.n
-            while i >= 1:
-                tem.append(self.board[i][j])
-                i -= 1
-            j -= 1
-            res.append(tem)
-        self.board = res
+    # def reverse(self):
+    #     res = [[0] * (self.n + 1)]
+    #
+    #     j = self.n
+    #     while j >= 1:
+    #         tem = [0]
+    #         i = self.n
+    #         while i >= 1:
+    #             tem.append(self.board[i][j])
+    #             i -= 1
+    #         j -= 1
+    #         res.append(tem)
+    #     self.board = res
 
     # Two algorithms but only choose one
     def _BFS(self, red):
         target = 0
         if red:
             target = self.r
+
+            stack = []
+            # copy = [row[1:] for row in self.board[1:]]
+            length = self.n
+            for i in range(1, length + 1):
+                if (self.board[1][i] == target):
+                    stack.insert(0, [0, i])
+            if (len(stack) == 0):
+                return False
+
+            while len(stack) != 0:
+                node = stack.pop(0)
+                row = node[0]
+                col = node[1]
+                self.board[row][col] = -1
+
+                if row == length:
+                    return True
+                if row + 1 <= length:
+                    if self.board[row + 1][col] == target:
+                        stack.insert(0, [row + 1, col])
+                    if col - 1 >= 1 and self.board[row + 1][col - 1] == target:
+                        stack.insert(0, [row + 1, col - 1])
+                if row - 1 >= 1:
+                    if self.board[row - 1][col] == target:
+                        stack.insert(0, [row - 1, col])
+                    if col + 1 <= length and self.board[row - 1][col + 1] == target:
+                        stack.insert(0, [row - 1, col + 1])
+                if col - 1 >= 1:
+                    if self.board[row][col - 1] == target:
+                        stack.insert(0, [row, col - 1])
+                if col + 1 <= length:
+                    if self.board[row][col + 1] == target:
+                        stack.insert(0, [row, col + 1])
         else:
             target = self.b
-        stack = []
-        copy = [row[1:] for row in self.board[1:]]
-        length = len(copy) - 1
-        for i in range(length + 1):
-            if (copy[0][i] == target):
-                stack.insert(0, [0, i])
-        if (len(stack) == 0):
-            return False
+            stack = []
+            # copy = [row[1:] for row in self.board[1:]]
+            length = self.n
+            for i in range(length, 0, -1):
+                if (self.board[length][i] == target):
+                    stack.insert(0, [0, i])
+            if (len(stack) == 0):
+                return False
 
-        while len(stack) != 0:
-            node = stack.pop(0)
-            row = node[0]
-            col = node[1]
-            copy[row][col] = -1
+            while len(stack) != 0:
+                node = stack.pop(0)
+                row = node[0]
+                col = node[1]
+                self.board[row][col] = -1
 
-            if row == length:
-                return True
-            if row + 1 <= length:
-                if copy[row + 1][col] == target:
-                    stack.insert(0, [row + 1, col])
-                if col - 1 >= 0 and copy[row + 1][col - 1] == target:
-                    stack.insert(0, [row + 1, col - 1])
-            if row - 1 >= 0:
-                if copy[row - 1][col] == target:
-                    stack.insert(0, [row - 1, col])
-                if col + 1 <= length and copy[row - 1][col + 1] == target:
-                    stack.insert(0, [row - 1, col + 1])
-            if col - 1 >= 0:
-                if copy[row][col - 1] == target:
-                    stack.insert(0, [row, col - 1])
-            if col + 1 <= length:
-                if copy[row][col + 1] == target:
-                    stack.insert(0, [row, col + 1])
+                if col == 1:
+                    return True
+                if row + 1 <= length:
+                    if self.board[row + 1][col] == target:
+                        stack.insert(0, [row + 1, col])
+                    if col - 1 >= 1 and self.board[row + 1][col - 1] == target:
+                        stack.insert(0, [row + 1, col - 1])
+                if row - 1 >= 1:
+                    if self.board[row - 1][col] == target:
+                        stack.insert(0, [row - 1, col])
+                    if col + 1 <= length and self.board[row - 1][col + 1] == target:
+                        stack.insert(0, [row - 1, col + 1])
+                if col - 1 >= 1:
+                    if self.board[row][col - 1] == target:
+                        stack.insert(0, [row, col - 1])
+                if col + 1 <= length:
+                    if self.board[row][col + 1] == target:
+                        stack.insert(0, [row, col + 1])
 
 
     def _DFS(self):
@@ -161,9 +195,9 @@ class HexEngine:
     # return 2 if blue wins
     def wining_check(self):
         red = self._BFS(True)
-        self.reverse()
+        # self.reverse()
         blue = self._BFS(False)
-        self.reverse()
+        # self.reverse()
         if red:
             return 1
         elif blue:
@@ -249,7 +283,7 @@ if __name__ == '__main__':
 
     engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui = HexGui(human_color_red=para[2]), ai=ai)
     #engine.run()
-    #engine.board = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 2, 2, 2, 2, 2, 2, 1], [0, 2, 1, 2, 2, 1, 2, 2, 1], [0, 1, 1, 2, 2, 1, 1, 1, 2], [0, 1, 2, 2, 2, 2, 1, 1, 1], [0, 1, 1, 2, 1, 2, 2, 1, 1], [0, 1, 1, 1, 1, 1, 2, 2, 2], [0, 2, 2, 2, 1, 2, 1, 1, 1], [0, 1, 1, 2, 2, 2, 1, 1, 1]]
-    #print(engine.wining_check())
-    engine.run()
+    engine.board = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 2, 2, 2, 2, 2, 2, 1], [0, 2, 1, 2, 2, 1, 2, 2, 1], [0, 1, 1, 2, 2, 1, 1, 1, 2], [0, 1, 2, 2, 2, 2, 1, 1, 1], [0, 1, 1, 2, 1, 2, 2, 1, 1], [0, 1, 1, 1, 1, 1, 2, 2, 2], [0, 2, 2, 2, 1, 2, 1, 1, 1], [0, 1, 1, 2, 2, 2, 1, 1, 1]]
+    print(engine.wining_check())
+    # engine.run()
     #A = HexEngine.create_new(n=3, human_color_red=True, human_move_first=True, gui=None, ai=None)
