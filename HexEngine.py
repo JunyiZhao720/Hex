@@ -75,7 +75,7 @@ class HexEngine:
                 if copy[row][col + 1] == target:
                     stack.insert(0, [row, col + 1])
 
-    def _decode(self, point):
+    def _decode_point(self, point):
         point_local = point
         if type(point_local).__module__ == np.__name__ or type(point_local) == int:
             if np.size(point_local) == 1:
@@ -90,11 +90,15 @@ class HexEngine:
         print('_decode error:', point_local)
         return (0, 0)
 
+    def _encode_point(self, point):
+        return self.n * (point[0] - 1) + point[1]
+
     def _flip(self, round):
         if round == 2:
             return 1
         else:
             return 2
+
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
     @staticmethod
     # Generate (n + 1) * (n + 1) sized board
@@ -195,16 +199,21 @@ class HexEngine:
                     moves.append((x, y))
         return moves
 
+    def available_encoded_moves(self):
+        return [self._encode_point(point) for point in self.available_moves()]
+
     # Input:(x, y)
     # 1. update board point, make the (x,y) point on the board based on self.round
     # 2. update self.round to the next
     def move(self, point, useGui=True):
-
         # TODO
-        point = self._decode(point)
-
+        point = self._decode_point(point)
         row = point[0]
         col = point[1]
+
+        if (self.board[row][col] != 0):
+            print('Error: move() used on an occupied plot!')
+
         if self.round == self.human_color:
             self.board[row][col] = self.human_color
         else:

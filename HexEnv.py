@@ -17,13 +17,22 @@ class HexEnv(py_environment.PyEnvironment):
     def __init__(self, engine):
         super().__init__()
         self._engine = engine
-        self._action_spec = array_spec.BoundedArraySpec(
-            shape=(), dtype=np.int32, minimum=1, maximum=self._engine.n**2, name = 'action')
-        # TODO
-        self._observation_spec = array_spec.BoundedArraySpec(
-            shape=(engine.n + 1,engine.n + 1), dtype=np.int32, minimum=0, maximum=2, name='observation')
+        #self._action_spec = array_spec.BoundedArraySpec.from_array(np.arange(1, self._engine.n**2 + 1).astype(np.int32), name='action')
+        self._action_spec = array_spec.BoundedArraySpec(minimum=1, maximum=self._engine.n**2, shape=(), dtype=np.int32, name='action')
+        self._observation_spec = {
+            'state': array_spec.BoundedArraySpec(
+            shape=(engine.n + 1,engine.n + 1), dtype=np.int32, minimum=0, maximum=2, name='state'),
+            'mask': array_spec.BoundedArraySpec(
+            shape=(self._engine.n**2,), dtype=np.int32, minimum=0, maximum=1, name='mask')
+        }
         self._state = engine.board
         self._episode_ended = False
+
+    def _get_mask(self):
+        mask = np.zeros((self._engine.n**2,), dtype=np.int32)
+        for i in self._engine.available_encoded_moves():
+            mask[i - 1] = 1
+        return mask
 
     def action_spec(self):
         return self._action_spec
@@ -35,7 +44,7 @@ class HexEnv(py_environment.PyEnvironment):
         self._engine.reset()
         self._episode_ended = False
         self._state = self._engine.board
-        return ts.restart(np.array(self._state, dtype=np.int32))
+        return ts.restart({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()})
 
     def _step(self, action):
 
@@ -48,10 +57,11 @@ class HexEnv(py_environment.PyEnvironment):
             self._episode_ended = True
         else:
             self._state = self._engine.board
+
         if self._episode_ended:
-            return ts.termination(np.array(self._state, dtype=np.int32), 1.0)
+            return ts.termination(({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), 1.0)
         else:
-            return ts.transition(np.array(self._state, dtype=np.int32), reward=0.0, discount=1.0)
+            return ts.transition(({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), reward=0.0, discount=1.0)
 
 
 
@@ -60,22 +70,22 @@ if __name__ == '__main__':
     gui = HexGui(human_color_red=para[2])
     engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
     env = HexEnv(engine)
-    #utils.validate_py_environment(env, episodes=5)
+    utils.validate_py_environment(env, episodes=1)
 
-    get_new_card_action = np.array(0, dtype=np.int32)
-    end_round_action = np.array(1, dtype=np.int32)
-
-    environment = env
-    time_step = environment.reset()
-    print(time_step)
-    cumulative_reward = time_step.reward
-
-    for _ in range(500):
-        time_step = environment.step(np.random.randint(1, 65))
-        print(time_step)
-        cumulative_reward += time_step.reward
-
-    time_step = environment.step(np.random.randint(1, 65))
-    print(time_step)
-    cumulative_reward += time_step.reward
-    print('Final Reward = ', cumulative_reward)
+    # get_new_card_action = np.array(0, dtype=np.int32)
+    # end_round_action = np.array(1, dtype=np.int32)
+    #
+    # environment = env
+    # time_step = environment.reset()
+    # print(time_step)
+    # cumulative_reward = time_step.reward
+    #
+    # for _ in range(500):
+    #     time_step = environment.step(np.random.randint(1, 65))
+    #     print(time_step)
+    #     cumulative_reward += time_step.reward
+    #
+    # time_step = environment.step(np.random.randint(1, 65))
+    # print(time_step)
+    # cumulative_reward += time_step.reward
+    # print('Final Reward = ', cumulative_reward)
