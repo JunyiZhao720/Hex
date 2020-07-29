@@ -12,6 +12,7 @@ from tf_agents.specs import array_spec
 from tf_agents.environments import wrappers
 from tf_agents.environments import suite_gym
 from tf_agents.trajectories import time_step as ts
+from tf_agents.policies import random_py_policy
 
 class HexEnv(py_environment.PyEnvironment):
     def __init__(self, engine):
@@ -34,19 +35,18 @@ class HexEnv(py_environment.PyEnvironment):
             mask[i - 1] = 1
         return mask
 
-    def action_spec(self):
-        return self._action_spec
+    # Used for mask extraction
+    @staticmethod
+    def observation_and_action_constraint_splitter(observation):
+        return observation, tf.convert_to_tensor(observation['mask'], dtype=np.int32)
 
-    def observation_spec(self):
-        return self._observation_spec
-
-    def _reset(self):
+    def reset(self):
         self._engine.reset()
         self._episode_ended = False
         self._state = self._engine.board
         return ts.restart({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()})
 
-    def _step(self, action):
+    def step(self, action):
 
         if self._episode_ended:
             return self.reset()
@@ -63,6 +63,11 @@ class HexEnv(py_environment.PyEnvironment):
         else:
             return ts.transition(({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), reward=0.0, discount=1.0)
 
+    def action_spec(self):
+        return self._action_spec
+
+    def observation_spec(self):
+        return self._observation_spec
 
 
 if __name__ == '__main__':
@@ -70,11 +75,23 @@ if __name__ == '__main__':
     gui = HexGui(human_color_red=para[2])
     engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
     env = HexEnv(engine)
-    utils.validate_py_environment(env, episodes=1)
+    #utils.validate_py_environment(env, episodes=1)
 
-    # get_new_card_action = np.array(0, dtype=np.int32)
-    # end_round_action = np.array(1, dtype=np.int32)
-    #
+    random_policy = random_py_policy.RandomPyPolicy(time_step_spec=env.time_step_spec(), action_spec=env.action_spec(), observation_and_action_constraint_splitter=HexEnv.observation_and_action_constraint_splitter)
+    time_step = env.reset()
+
+    episode_count = 0
+    episode = 1
+
+    while episode_count < episode:
+        action = random_policy.action(time_step).action
+        time_step = env.step(action)
+
+        if time_step.is_last():
+            episode_count += 1
+            time_step = env.reset()
+
+
     # environment = env
     # time_step = environment.reset()
     # print(time_step)

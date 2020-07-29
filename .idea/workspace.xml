@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf189dfa-0233-4dda-8c4c-b3c9eaf97e9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Algo/DDQNAgent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/DDQN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algo/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/MonteCarlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HexAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HexEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexEngine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HexEnv.py" beforeDir="false" afterPath="$PROJECT_DIR$/HexEnv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/HexAI_TFAgent_tutorial.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/HexAI_TFAgent_tutorial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/HexEngine_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/HexEngine_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,8 +19,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Hex$HexEnv.coverage" NAME="HexEnv Coverage Results" MODIFIED="1595909021294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Hex$.coverage" NAME="丁大特 Coverage Results" MODIFIED="1595860554290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../../../../信息/大特" />
+    <SUITE FILE_PATH="coverage/Hex$HexEnv.coverage" NAME="HexEnv Coverage Results" MODIFIED="1595988209086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Hex$.coverage" NAME="丁大特 Coverage Results" MODIFIED="1595945670997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../../../../信息/大特" />
     <SUITE FILE_PATH="coverage/Hex$HexAI_TFAgent_tutorial.coverage" NAME="HexAI_TFAgent_tutorial Coverage Results" MODIFIED="1595736291318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
     <SUITE FILE_PATH="coverage/Hex$test.coverage" NAME="test Coverage Results" MODIFIED="1595472445543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Hex$HexEngine.coverage" NAME="HexEngine Coverage Results" MODIFIED="1595474083122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -24,37 +30,37 @@
     <session id="-1047906866">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.0" value="7" />
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="17" />
+          <entry key="py" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="17" />
+          <entry key="Python" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="32" />
-          <entry key="py" value="10070" />
+          <entry key="dummy" value="48" />
+          <entry key="py" value="10639" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="32" />
-          <entry key="Python" value="10070" />
+          <entry key="PLAIN_TEXT" value="48" />
+          <entry key="Python" value="10639" />
         </counts>
       </usages-collector>
     </session>
@@ -64,106 +70,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HexEngine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="201" column="8" lean-forward="true" selection-start-line="201" selection-start-column="8" selection-end-line="201" selection-end-column="31" />
+            <state relative-caret-position="171">
+              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding>
                 <element signature="e#1#26#0" expanded="true" />
-                <marker date="1595907813179" expanded="true" signature="2839:2895" ph="..." />
-                <marker date="1595907813179" expanded="true" signature="2998:3003" ph="..." />
-                <marker date="1595907813179" expanded="true" signature="6130:6135" ph="..." />
+                <marker date="1595988247324" expanded="true" signature="2962:3018" ph="..." />
+                <marker date="1595988247324" expanded="true" signature="3121:3126" ph="..." />
+                <marker date="1595988247324" expanded="true" signature="6253:6258" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algo/DDQNAgent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="68" column="83" lean-forward="true" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="83" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algo/ExpirienceReplay.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algo/AgentTrainer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HexEnv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="513">
+              <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1595908991442" expanded="true" signature="520:525" ph="..." />
-                <marker date="1595908991442" expanded="true" signature="1313:1486" ph="..." />
-                <marker date="1595908991442" expanded="true" signature="1508:1517" ph="..." />
-                <marker date="1595908991442" expanded="true" signature="1508:1547" ph="..." />
-                <marker date="1595908991442" expanded="true" signature="1574:1618" ph="..." />
-                <marker date="1595908991442" expanded="true" signature="1635:1849" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/specs/array_spec.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="222" selection-start-line="222" selection-end-line="222" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/tensorflow/python/util/nest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="617" selection-start-line="617" selection-end-line="617" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/gin/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="1008" selection-start-line="1008" selection-end-line="1008" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/environments/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/policies/py_policy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="146" selection-start-line="146" selection-end-line="146" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/policies/random_py_policy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/environments/py_environment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1662">
-              <caret line="173" selection-start-line="173" selection-end-line="173" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algo/MonteCarlo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1595993664977" expanded="true" signature="568:573" ph="..." />
+                <marker date="1595993664977" expanded="true" signature="1361:1730" ph="..." />
+                <marker date="1595993664977" expanded="true" signature="1730:1735" ph="..." />
+                <marker date="1595993664977" expanded="true" signature="1751:1965" ph="..." />
               </folding>
             </state>
           </provider>
@@ -185,6 +147,7 @@
       <find>reverse</find>
       <find>.move</find>
       <find>observation_and_action_constraint_splitter</find>
+      <find>_decode_point</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,7 +165,13 @@
         <option value="$PROJECT_DIR$/HexGui.py" />
         <option value="$PROJECT_DIR$/../../../../../../信息/大特/丁大特.py" />
         <option value="$PROJECT_DIR$/HexEngine.py" />
+        <option value="$PROJECT_DIR$/Algo/DDQN.py" />
+        <option value="$PROJECT_DIR$/Algo/AgentTrainer.py" />
+        <option value="$PROJECT_DIR$/algo/agent/DDQNAgent.py" />
+        <option value="$PROJECT_DIR$/algo/ExpirienceReplay.py" />
+        <option value="$PROJECT_DIR$/algo/DDQNAgent.py" />
         <option value="$PROJECT_DIR$/HexEnv.py" />
+        <option value="$PROJECT_DIR$/algo/AgentTrainer.py" />
       </list>
     </option>
   </component>
@@ -212,7 +181,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -232,6 +201,11 @@
               <item name="Hex" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hex" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Hex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hex" type="462c0819:PsiDirectoryNode" />
+              <item name="algo" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -248,6 +222,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Doing\Doing Now\Current Term\ECE657\project\code\Hex\algo" />
+      <recent name="D:\Doing\Doing Now\Current Term\ECE657\project\code\Hex\algo\agent" />
+      <recent name="D:\Doing\Doing Now\Current Term\ECE657\project\code\Hex\Model" />
       <recent name="D:\Doing\Doing Now\Current Term\ECE657\project\code\Hex\Test" />
     </key>
   </component>
@@ -408,13 +385,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.054371003" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15938166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4039088" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.11400651" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4039088" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.24212812" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -437,26 +414,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/policies/py_policy.py</url>
-          <line>146</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Test/HexEngine_test.py">
+    <entry file="file://$PROJECT_DIR$/test/HexEngine_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-673">
           <caret line="70" column="27" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/HexAI_TFAgent_tutorial.py">
+    <entry file="file://$PROJECT_DIR$/test/HexAI_TFAgent_tutorial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="97" selection-start-line="97" selection-end-line="97" />
@@ -477,7 +443,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Algo/MonteCarlo.py">
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/specs/array_spec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4066">
+          <caret line="222" selection-start-line="222" selection-end-line="222" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/tensorflow/python/util/nest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11495">
+          <caret line="617" selection-start-line="617" selection-end-line="617" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/gin/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18791">
+          <caret line="1008" selection-start-line="1008" selection-end-line="1008" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1292">
           <caret line="68" column="43" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="43" />
@@ -489,86 +476,93 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../../信息/大特/丁大特.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/environments/py_environment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1662">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/gin/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="1008" selection-start-line="1008" selection-end-line="1008" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/tensorflow/python/util/nest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="617" selection-start-line="617" selection-end-line="617" />
+        <state relative-caret-position="834">
+          <caret line="119" column="86" selection-start-line="119" selection-start-column="86" selection-end-line="119" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/environments/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="324">
+          <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="49" />
+          <folding>
+            <element signature="e#654#692#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/specs/array_spec.py">
+    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/environments/py_environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="222" selection-start-line="222" selection-end-line="222" />
+        <state relative-caret-position="-2360">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/policies/py_policy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="362">
           <caret line="146" selection-start-line="146" selection-end-line="146" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/tf_agents/policies/random_py_policy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="116" column="27" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="33" />
+        <state relative-caret-position="271">
+          <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="113" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HexEngine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="201" column="8" lean-forward="true" selection-start-line="201" selection-start-column="8" selection-end-line="201" selection-end-column="31" />
+        <state relative-caret-position="171">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding>
             <element signature="e#1#26#0" expanded="true" />
-            <marker date="1595907813179" expanded="true" signature="2839:2895" ph="..." />
-            <marker date="1595907813179" expanded="true" signature="2998:3003" ph="..." />
-            <marker date="1595907813179" expanded="true" signature="6130:6135" ph="..." />
+            <marker date="1595988247324" expanded="true" signature="2962:3018" ph="..." />
+            <marker date="1595988247324" expanded="true" signature="3121:3126" ph="..." />
+            <marker date="1595988247324" expanded="true" signature="6253:6258" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algo/ExpirienceReplay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algo/DDQNAgent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="68" column="83" lean-forward="true" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HexEnv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="513">
+          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1595908991442" expanded="true" signature="520:525" ph="..." />
-            <marker date="1595908991442" expanded="true" signature="1313:1486" ph="..." />
-            <marker date="1595908991442" expanded="true" signature="1508:1517" ph="..." />
-            <marker date="1595908991442" expanded="true" signature="1508:1547" ph="..." />
-            <marker date="1595908991442" expanded="true" signature="1574:1618" ph="..." />
-            <marker date="1595908991442" expanded="true" signature="1635:1849" ph="..." />
+            <marker date="1595993664977" expanded="true" signature="568:573" ph="..." />
+            <marker date="1595993664977" expanded="true" signature="1361:1730" ph="..." />
+            <marker date="1595993664977" expanded="true" signature="1730:1735" ph="..." />
+            <marker date="1595993664977" expanded="true" signature="1751:1965" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algo/AgentTrainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>

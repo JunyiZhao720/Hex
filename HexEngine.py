@@ -76,19 +76,26 @@ class HexEngine:
                     stack.insert(0, [row, col + 1])
 
     def _decode_point(self, point):
-        point_local = point
-        if type(point_local).__module__ == np.__name__ or type(point_local) == int:
-            if np.size(point_local) == 1:
-                row = point_local // (self.n + 1) + 1
-                col = point_local % self.n
-                if col == 0:
-                    col = self.n
-                return (row, col)
-        elif len(point_local) == 2:
+        point_local = None
+        # Numpy Element
+        if type(point).__module__ == np.__name__:
+            point_local = point
+        # Int
+        elif type(point) == int:
+            point_local = point
+        # Coordination Already
+        elif len(point) == 2:
             return point_local
+        else:
+            print('_decode error:', point_local)
+            return (0, 0)
 
-        print('_decode error:', point_local)
-        return (0, 0)
+        if np.size(point_local) == 1:
+            row = point_local // (self.n + 1) + 1
+            col = point_local % self.n
+            if col == 0:
+                col = self.n
+            return (row, col)
 
     def _encode_point(self, point):
         return self.n * (point[0] - 1) + point[1]

@@ -1,7 +1,7 @@
 
 
-from Algo.MonteCarlo import MonteCarlo
-from Algo.DDQN import DDQN
+from model.MonteCarlo import MonteCarlo
+from algo.agent.DDQN import DDQN
 
 class HexAI:
 
