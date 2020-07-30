@@ -19,13 +19,7 @@ class HexEnv(py_environment.PyEnvironment):
         super().__init__()
         self._engine = engine
         #self._action_spec = array_spec.BoundedArraySpec.from_array(np.arange(1, self._engine.n**2 + 1).astype(np.int32), name='action')
-        self._action_spec = array_spec.BoundedArraySpec(minimum=1, maximum=self._engine.n**2, shape=(), dtype=np.int32, name='action')
-        self._observation_spec = {
-            'state': array_spec.BoundedArraySpec(
-            shape=(engine.n + 1,engine.n + 1), dtype=np.int32, minimum=0, maximum=2, name='state'),
-            'mask': array_spec.BoundedArraySpec(
-            shape=(self._engine.n**2,), dtype=np.int32, minimum=0, maximum=1, name='mask')
-        }
+        self._actions = np.arange(1, self._engine.n**2 + 1)
         self._state = engine.board
         self._episode_ended = False
 
@@ -35,19 +29,15 @@ class HexEnv(py_environment.PyEnvironment):
             mask[i - 1] = 1
         return mask
 
-    # Used for mask extraction
-    @staticmethod
-    def observation_and_action_constraint_splitter(observation):
-        return observation, tf.convert_to_tensor(observation['mask'], dtype=np.int32)
-
+    # return: observation = {state:, mask:, }
     def reset(self):
         self._engine.reset()
         self._episode_ended = False
         self._state = self._engine.board
-        return ts.restart({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()})
+        return {'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}
 
+    # return: reward, next_observation, termination
     def step(self, action):
-
         if self._episode_ended:
             return self.reset()
 
@@ -59,16 +49,12 @@ class HexEnv(py_environment.PyEnvironment):
             self._state = self._engine.board
 
         if self._episode_ended:
-            return ts.termination(({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), 1.0)
+            return 1.0, ({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), True
         else:
-            return ts.transition(({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), reward=0.0, discount=1.0)
+            return 0.0, ({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), False
 
-    def action_spec(self):
-        return self._action_spec
-
-    def observation_spec(self):
-        return self._observation_spec
-
+    def actions(self):
+        return self._actions
 
 if __name__ == '__main__':
     para = (8, False, True, True, 'Monte', 'Monte', 1, 2)
