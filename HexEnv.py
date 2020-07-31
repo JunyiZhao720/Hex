@@ -4,36 +4,51 @@ from HexEngine import HexEngine
 from HexGui import HexGui
 
 
-from tf_agents.environments import py_environment
-from tf_agents.environments import tf_environment
-from tf_agents.environments import tf_py_environment
-from tf_agents.environments import utils
-from tf_agents.specs import array_spec
-from tf_agents.environments import wrappers
-from tf_agents.environments import suite_gym
-from tf_agents.trajectories import time_step as ts
 from tf_agents.policies import random_py_policy
 
-class HexEnv(py_environment.PyEnvironment):
-    def __init__(self, engine):
-        super().__init__()
-        self._engine = engine
-        #self._action_spec = array_spec.BoundedArraySpec.from_array(np.arange(1, self._engine.n**2 + 1).astype(np.int32), name='action')
-        self._actions = np.arange(1, self._engine.n**2 + 1)
-        self._state = engine.board
-        self._episode_ended = False
+class HexEnv():
+    def __init__(self):
+        self._engine = None
+        self._actions = None
+        self._state = None
+        self._episode_ended = None
 
+    # Constructors
+    @staticmethod
+    def create_new(n, human_color_red, human_move_first, ai):
+        instance = HexEnv()
+        engine = HexEngine.create_new(n, human_color_red, human_move_first, HexGui(human_color_red), ai)
+        instance._engine = engine
+        instance._actions = np.arange(1, engine.n**2 + 1)
+        instance._state = engine.board
+        instance._episode_ended = False
+        return instance
+
+    @staticmethod
+    def create_from_engine(engine):
+        instance = HexEnv()
+        instance._engine = engine
+        instance._actions = np.arange(1, engine.n**2 + 1)
+        instance._state = engine.board
+        instance._episode_ended = False
+        return instance
+
+    # manipulation methods
     def _get_mask(self):
         mask = np.zeros((self._engine.n**2,), dtype=np.int32)
         for i in self._engine.available_encoded_moves():
             mask[i - 1] = 1
         return mask
 
+    # get n * n board rather than n+1 * n+1
+    def _get_state(self):
+        return np.array([row[1:] for row in self._engine.board[1:]], dtype=np.int32)
+
     # return: observation = {state:, mask:, }
     def reset(self):
         self._engine.reset()
         self._episode_ended = False
-        self._state = self._engine.board
+        self._state = self._get_state()
         return {'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}
 
     # return: reward, next_observation, termination
@@ -45,37 +60,38 @@ class HexEnv(py_environment.PyEnvironment):
 
         if self._engine.wining_check():
             self._episode_ended = True
-        else:
-            self._state = self._engine.board
+
+        self._state = self._get_state()
 
         if self._episode_ended:
-            return 1.0, ({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), True
+            return ({'state': self._state, 'mask': self._get_mask()}), 1.0, True
         else:
-            return 0.0, ({'state': np.array(self._state, dtype=np.int32), 'mask': self._get_mask()}), False
+            return ({'state': self._state, 'mask': self._get_mask()}), 0.0, False
 
     def actions(self):
         return self._actions
 
 if __name__ == '__main__':
-    para = (8, False, True, True, 'Monte', 'Monte', 1, 2)
-    gui = HexGui(human_color_red=para[2])
-    engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
-    env = HexEnv(engine)
-    #utils.validate_py_environment(env, episodes=1)
-
-    random_policy = random_py_policy.RandomPyPolicy(time_step_spec=env.time_step_spec(), action_spec=env.action_spec(), observation_and_action_constraint_splitter=HexEnv.observation_and_action_constraint_splitter)
-    time_step = env.reset()
-
-    episode_count = 0
-    episode = 1
-
-    while episode_count < episode:
-        action = random_policy.action(time_step).action
-        time_step = env.step(action)
-
-        if time_step.is_last():
-            episode_count += 1
-            time_step = env.reset()
+    pass
+    #para = (8, False, True, True, 'Monte', 'Monte', 1, 2)
+    # gui = HexGui(human_color_red=para[2])
+    # engine = HexEngine.create_new(n=para[0], human_color_red=para[2], human_move_first=para[3], gui=gui, ai=None)
+    # env = HexEnv(engine)
+    # #utils.validate_py_environment(env, episodes=1)
+    #
+    # random_policy = random_py_policy.RandomPyPolicy(time_step_spec=env.time_step_spec(), action_spec=env.action_spec(), observation_and_action_constraint_splitter=HexEnv.observation_and_action_constraint_splitter)
+    # time_step = env.reset()
+    #
+    # episode_count = 0
+    # episode = 1
+    #
+    # while episode_count < episode:
+    #     action = random_policy.action(time_step).action
+    #     time_step = env.step(action)
+    #
+    #     if time_step.is_last():
+    #         episode_count += 1
+    #         time_step = env.reset()
 
 
     # environment = env

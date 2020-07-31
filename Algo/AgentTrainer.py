@@ -1,27 +1,34 @@
-import numpy as np
+from tensorflow.keras.optimizers import Adam
+from algo.DDQNAgent import DDQNAgent
+from algo.ExpirienceReplay import ExpirienceReplay
+from HexEnv import HexEnv
+
 
 class AgentTrainer():
-    def __init__(self, agent, enviroment):
+
+    BATCH_SIZE = 32
+
+    def __init__(self, agent, environment):
         self.agent = agent
-        self.enviroment = enviroment
+        self.environment = environment
 
     def _take_action(self, action):
-        next_state, reward, terminated, _ = self.enviroment.step(action)
-        next_state = next_state if not terminated else None
-        reward = np.random.normal(1.0, REWARD_STD)
-        return next_state, reward, terminated
+        next_observation, reward, terminated = self.environment.step(action)
+        next_observation = next_observation if not terminated else None
+        # reward = np.random.normal(1.0, REWARD_STD)
+        return next_observation, reward, terminated
 
     def _print_epoch_values(self, episode, total_epoch_reward, average_loss):
         print("**********************************")
         print(f"Episode: {episode} - Reward: {total_epoch_reward} - Average Loss: {average_loss:.3f}")
 
     def train(self, num_of_episodes=1000):
-        total_timesteps = 0
+        total_time_steps = 0
 
         for episode in range(0, num_of_episodes):
 
-            # Reset the enviroment
-            state = self.enviroment.reset()
+            # Reset the environment
+            observation = self.environment.reset()
 
             # Initialize variables
             average_loss_per_episode = []
@@ -33,23 +40,31 @@ class AgentTrainer():
             while not terminated:
 
                 # Run Action
-                action = agent.act(state)
+                action = self.agent.act(observation)
 
                 # Take action
-                next_state, reward, terminated = self._take_action(action)
-                agent.store(state, action, reward, next_state, terminated)
+                next_observation, reward, terminated = self._take_action(action)
+                self.agent.store(observation, action, reward, next_observation, terminated)
 
-                loss = agent.train(BATCH_SIZE)
+                loss = self.agent.train(AgentTrainer.BATCH_SIZE)
                 average_loss += loss
 
-                state = next_state
-                agent.align_epsilon(total_timesteps)
-                total_timesteps += 1
+                self.agent.align_epsilon(total_time_steps)
+                total_time_steps += 1
 
                 if terminated:
                     average_loss /= total_epoch_reward
                     average_loss_per_episode.append(average_loss)
                     self._print_epoch_values(episode, total_epoch_reward, average_loss)
 
-                # Real Reward is always 1 for Cart-Pole enviroment
+                # Real Reward is always 1 for Cart-Pole environment
                 total_epoch_reward += 1
+
+
+if __name__ == '__main__':
+    environment = HexEnv.create_new(8, True, True, None)
+    optimizer = Adam()
+    experience_replay = ExpirienceReplay(50000)
+    agent = DDQNAgent(experience_replay, state_shape=(8, 8), actions_size= 8*8, batch_size=32, optimizer = optimizer)
+    agent_trainer = AgentTrainer(agent, environment)
+    agent_trainer.train()
