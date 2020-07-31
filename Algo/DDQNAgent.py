@@ -64,8 +64,7 @@ class DDQNAgent:
         if np.random.rand() < self.epsilon:
             return np.random.randint(1, self._action_size + 1)
         else:
-            x = [observation['state']]
-            q_values = self.primary_network.predict(x=x)
+            q_values = self.primary_network.predict(x=np.reshape(observation['state'], (-1, self._state_shape[0],  self._state_shape[1])))
             return np.argmax(q_values)
 
     def store(self, observation, action, reward, next_observation, terminated):
@@ -77,8 +76,8 @@ class DDQNAgent:
 
         batch = self.experience_replay.get_batch(batch_size)
         observations, actions, rewards, next_observations = self.experience_replay.get_arrays_from_batch(batch)
-        states = [observation['state'] for observation in observations]
-        next_states = [observation['state'] for observation in next_observations]
+        states = np.reshape([observation['state'] for observation in observations], (-1, self._state_shape[0],  self._state_shape[1]))
+        next_states = np.reshape([observation['state'] for observation in next_observations], (-1, self._state_shape[0],  self._state_shape[1]))
 
         # Predict Q(s,a) and Q(s',a') given the batch of states
         q_values_state = self.primary_network(states).numpy()
