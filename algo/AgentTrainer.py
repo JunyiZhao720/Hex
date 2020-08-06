@@ -3,12 +3,13 @@ from algo.DDQNAgent import DDQNAgent
 from algo.ExpirienceReplay import ExpirienceReplay
 from HexEnv import HexEnv
 import numpy as np
+import time
 
 
 class AgentTrainer():
 
     BATCH_SIZE = 32
-    REWARD_STD = 0.01
+    REWARD_STD = 0.05
 
     def __init__(self, agent, environment):
         self.agent = agent
@@ -20,9 +21,9 @@ class AgentTrainer():
         reward = np.random.normal(reward, AgentTrainer.REWARD_STD) #todo: reward change
         return next_observation, reward, terminated
 
-    def _print_epoch_values(self, episode, total_epoch_reward, average_loss):
+    def _print_epoch_values(self, episode, total_epoch_reward, average_loss, time_used):
         print("**********************************")
-        print(f"Episode: {episode} - Reward: {total_epoch_reward} - Average Loss: {average_loss:.3f}")
+        print(f"Episode: {episode} - Reward: {total_epoch_reward} - Average Loss: {average_loss:.3f} - Time Used: {time_used}")
 
     def train(self, num_of_episodes=1000):
         total_time_steps = 0
@@ -36,6 +37,7 @@ class AgentTrainer():
             average_loss_per_episode = []
             average_loss = 0
             total_epoch_reward = 0
+            time_start = time.time()
 
             terminated = False
 
@@ -59,11 +61,11 @@ class AgentTrainer():
                 if terminated:
                     average_loss /= total_epoch_reward
                     average_loss_per_episode.append(average_loss)
-                    self._print_epoch_values(episode, total_epoch_reward, average_loss)
+                    self._print_epoch_values(episode, total_epoch_reward, average_loss, time.time() - time_start)
 
 
 if __name__ == '__main__':
-    environment = HexEnv.create_new(8, True, True, None, verbose=True)
+    environment = HexEnv.create_new(8, True, True, None, verbose=False)
     optimizer = Adam()
     experience_replay = ExpirienceReplay(50000)
     agent = DDQNAgent(experience_replay, state_shape=(8, 8), actions_size= 8*8, batch_size=32, optimizer = optimizer)
