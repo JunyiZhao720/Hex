@@ -8,6 +8,7 @@ import numpy as np
 class AgentTrainer():
 
     BATCH_SIZE = 32
+    REWARD_STD = 0.2
 
     def __init__(self, agent, environment):
         self.agent = agent
@@ -16,7 +17,7 @@ class AgentTrainer():
     def _take_action(self, action):
         next_observation, reward, terminated = self.environment.step(action)
         # next_observation = next_observation if not terminated else None //todo: PROBLEM
-        reward = np.random.normal(reward, 1) #todo: reward change
+        reward = np.random.normal(reward, AgentTrainer.REWARD_STD) #todo: reward change
         return next_observation, reward, terminated
 
     def _print_epoch_values(self, episode, total_epoch_reward, average_loss):
