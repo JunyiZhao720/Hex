@@ -63,7 +63,7 @@ class AgentTrainer():
 
 
 if __name__ == '__main__':
-    environment = HexEnv.create_new(8, True, True, None, verbose=False)
+    environment = HexEnv.create_new(8, True, True, None, verbose=True)
     optimizer = Adam()
     experience_replay = ExpirienceReplay(50000)
     agent = DDQNAgent(experience_replay, state_shape=(8, 8), actions_size= 8*8, batch_size=32, optimizer = optimizer)
