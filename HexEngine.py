@@ -35,7 +35,44 @@ class HexEngine:
         self.board = res
 
     def _BFS_old(self, red):
-        
+        target = 0
+        if red:
+            target = self.r
+        else:
+            target = self.b
+        stack = []
+        copy = [row[1:] for row in self.board[1:]]
+        length = len(copy) - 1
+        for i in range(length + 1):
+            if (copy[0][i] == target):
+                stack.insert(0, [0, i])
+        if (len(stack) == 0):
+            return False
+
+        while len(stack) != 0:
+            node = stack.pop(0)
+            row = node[0]
+            col = node[1]
+            copy[row][col] = -1
+
+            if row == length:
+                return True
+            if row + 1 <= length:
+                if copy[row + 1][col] == target:
+                    stack.insert(0, [row + 1, col])
+                if col - 1 >= 0 and copy[row + 1][col - 1] == target:
+                    stack.insert(0, [row + 1, col - 1])
+            if row - 1 >= 0:
+                if copy[row - 1][col] == target:
+                    stack.insert(0, [row - 1, col])
+                if col + 1 <= length and copy[row - 1][col + 1] == target:
+                    stack.insert(0, [row - 1, col + 1])
+            if col - 1 >= 0:
+                if copy[row][col - 1] == target:
+                    stack.insert(0, [row, col - 1])
+            if col + 1 <= length:
+                if copy[row][col + 1] == target:
+                    stack.insert(0, [row, col + 1])
 
 
 
@@ -214,10 +251,10 @@ class HexEngine:
     # return 1 if red wins
     # return 2 if blue wins
     def wining_check(self):
-        red = self._BFS(True)
-        # self.reverse()
-        blue = self._BFS(False)
-        # self.reverse()
+        red = self._BFS_old(True)
+        self._reverse()
+        blue = self._BFS_old(False)
+        self._reverse()
         if red:
             return 1
         elif blue:
