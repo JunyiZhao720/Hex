@@ -1,5 +1,4 @@
 
-
 from model.MonteCarlo import MonteCarlo
 
 class HexAI:

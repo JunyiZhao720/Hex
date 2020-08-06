@@ -20,19 +20,24 @@ class HexEngine:
         self.r = 1
         self.b = 2
 
-    # def reverse(self):
-    #     res = [[0] * (self.n + 1)]
-    #
-    #     j = self.n
-    #     while j >= 1:
-    #         tem = [0]
-    #         i = self.n
-    #         while i >= 1:
-    #             tem.append(self.board[i][j])
-    #             i -= 1
-    #         j -= 1
-    #         res.append(tem)
-    #     self.board = res
+    def _reverse(self):
+        res = [[0] * (self.n + 1)]
+
+        j = self.n
+        while j >= 1:
+            tem = [0]
+            i = self.n
+            while i >= 1:
+                tem.append(self.board[i][j])
+                i -= 1
+            j -= 1
+            res.append(tem)
+        self.board = res
+
+    def _BFS_old(self, red):
+        
+
+
 
     # Two algorithms but only choose one
     def _BFS(self, red):
@@ -141,7 +146,7 @@ class HexEngine:
     # first time run, needs to initialize itself
     def create_new(n, human_color_red, human_move_first, gui, ai):
         instance = HexEngine()
-        instance.n = n                                      # size of board
+        instance.n = n                                       # size of board
         instance.board = HexEngine.init_board(n)             # initialize board
         instance.gui = gui
         instance.ai = ai
@@ -249,6 +254,9 @@ class HexEngine:
             self.board[row][col] = self.human_color
         else:
             self.board[row][col] = self.AI_color
+
+        if self.human_color == -1 or self.AI_color == -1:
+            a = 1+1
 
         if useGui:
             self.update_gui()

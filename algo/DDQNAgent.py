@@ -65,6 +65,9 @@ class DDQNAgent:
 
         if np.random.rand() < self.epsilon:
             moves = [i for i in range(len(mask)) if mask[i] == 1]
+            if len(moves) == 0:
+                a = 3+1
+                b = 4+5
             a = moves[np.random.randint(0, len(moves))]
             return a
         else:
