@@ -8,7 +8,7 @@ import numpy as np
 class AgentTrainer():
 
     BATCH_SIZE = 32
-    REWARD_STD = 0.2
+    REWARD_STD = 0.01
 
     def __init__(self, agent, environment):
         self.agent = agent
@@ -54,14 +54,12 @@ class AgentTrainer():
                 self.agent.align_epsilon(total_time_steps)
                 total_time_steps += 1
 
+                total_epoch_reward += reward
+                observation = next_observation
                 if terminated:
                     average_loss /= total_epoch_reward
                     average_loss_per_episode.append(average_loss)
                     self._print_epoch_values(episode, total_epoch_reward, average_loss)
-
-                # Real Reward is always 1 for Cart-Pole environment
-                total_epoch_reward += reward
-                observation = next_observation
 
 
 if __name__ == '__main__':
