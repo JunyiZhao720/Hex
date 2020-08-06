@@ -14,8 +14,8 @@ class AgentTrainer():
 
     def _take_action(self, action):
         next_observation, reward, terminated = self.environment.step(action)
-        next_observation = next_observation if not terminated else None
-        # reward = np.random.normal(1.0, REWARD_STD)
+        # next_observation = next_observation if not terminated else None //todo: PROBLEM
+        # reward = np.random.normal(1.0, REWARD_STD) //todo: reward change
         return next_observation, reward, terminated
 
     def _print_epoch_values(self, episode, total_epoch_reward, average_loss):

@@ -28,7 +28,7 @@ class DDQNAgent:
 
         # Initialize attributes
         self._state_shape = state_shape
-        self._action_size = actions_size
+        self._action_size = actions_size + 1        # additional 1 is for action from 1 to self._action_size
         self._optimizer = optimizer
         self._batch_size = batch_size
 
@@ -49,7 +49,7 @@ class DDQNAgent:
         network.add(Flatten(input_shape=self._state_shape))
         network.add(Dense(32, activation='relu'))
         network.add(Dense(32, activation='relu'))
-        network.add(Dense(self._action_size, activation='softmax'))
+        network.add(Dense(self._action_size + 1))
 
         return network
 
@@ -62,7 +62,7 @@ class DDQNAgent:
 
     def act(self, observation):
         if np.random.rand() < self.epsilon:
-            return np.random.randint(1, self._action_size + 1)
+            return np.random.randint(1, self._action_size)
         else:
             q_values = self.primary_network.predict(x=np.reshape(observation['state'], (-1, self._state_shape[0],  self._state_shape[1])))
             return np.argmax(q_values)
@@ -87,7 +87,7 @@ class DDQNAgent:
         target = q_values_state
         updates = np.zeros(rewards.shape)
 
-        valid_indexes = np.array(next_states).sum(axis=1) != 0
+        valid_indexes = next_states.reshape(-1, self._state_shape[0]*self._state_shape[1]).sum(axis=1) != 0
         batch_indexes = np.arange(self._batch_size)
 
         action = np.argmax(q_values_next_state, axis=1)
