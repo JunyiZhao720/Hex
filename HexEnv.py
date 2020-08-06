@@ -12,33 +12,38 @@ class HexEnv():
         self._actions = None
         self._state = None
         self._episode_ended = None
+        self._verbose = True
 
     # Constructors
     @staticmethod
-    def create_new(n, human_color_red, human_move_first, ai):
+    def create_new(n, human_color_red, human_move_first, ai, verbose=True):
         instance = HexEnv()
         engine = HexEngine.create_new(n, human_color_red, human_move_first, HexGui(human_color_red), ai)
         instance._engine = engine
         instance._actions = np.arange(1, engine.n**2 + 1)
         instance._state = engine.board
         instance._episode_ended = False
+        instance._verbose = verbose
         return instance
 
     @staticmethod
-    def create_from_engine(engine):
+    def create_from_engine(engine, verbose=True):
         instance = HexEnv()
         instance._engine = engine
         instance._actions = np.arange(1, engine.n**2 + 1)
         instance._state = engine.board
         instance._episode_ended = False
+        instance._verbose = verbose
         return instance
 
     # manipulation methods
     def _get_mask(self):
         mask = np.zeros((self._engine.n**2,), dtype=np.int32)
+        a = self._engine.available_encoded_moves()
         for i in self._engine.available_encoded_moves():
             mask[i] = 1
         return mask
+
 
     # get n * n board rather than n+1 * n+1
     def _get_state(self):
@@ -56,7 +61,7 @@ class HexEnv():
         if self._episode_ended:
             return self.reset()
 
-        self._engine.move(action)
+        self._engine.move(action, useGui=self._verbose)
 
         if self._engine.wining_check():
             self._episode_ended = True

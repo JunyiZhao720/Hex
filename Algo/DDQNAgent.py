@@ -65,7 +65,8 @@ class DDQNAgent:
 
         if np.random.rand() < self.epsilon:
             moves = [i for i in range(len(mask)) if mask[i] == 1]
-            return moves[np.random.randint(0, len(moves))]
+            a = moves[np.random.randint(0, len(moves))]
+            return a
         else:
             q_values = self.primary_network.predict(x=np.reshape(observation['state'], (-1, self._state_shape[0],  self._state_shape[1])))[0]
             q_value_best = [-np.inf, -1]

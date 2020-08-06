@@ -2,6 +2,7 @@ from tensorflow.keras.optimizers import Adam
 from algo.DDQNAgent import DDQNAgent
 from algo.ExpirienceReplay import ExpirienceReplay
 from HexEnv import HexEnv
+import numpy as np
 
 
 class AgentTrainer():
@@ -15,7 +16,7 @@ class AgentTrainer():
     def _take_action(self, action):
         next_observation, reward, terminated = self.environment.step(action)
         # next_observation = next_observation if not terminated else None //todo: PROBLEM
-        # reward = np.random.normal(1.0, REWARD_STD) //todo: reward change
+        reward = np.random.normal(reward, 1) #todo: reward change
         return next_observation, reward, terminated
 
     def _print_epoch_values(self, episode, total_epoch_reward, average_loss):
@@ -58,11 +59,12 @@ class AgentTrainer():
                     self._print_epoch_values(episode, total_epoch_reward, average_loss)
 
                 # Real Reward is always 1 for Cart-Pole environment
-                total_epoch_reward += 1
+                total_epoch_reward += reward
+                observation = next_observation
 
 
 if __name__ == '__main__':
-    environment = HexEnv.create_new(8, True, True, None)
+    environment = HexEnv.create_new(8, True, True, None, verbose=False)
     optimizer = Adam()
     experience_replay = ExpirienceReplay(50000)
     agent = DDQNAgent(experience_replay, state_shape=(8, 8), actions_size= 8*8, batch_size=32, optimizer = optimizer)
