@@ -34,6 +34,69 @@ class HexEngine:
             res.append(tem)
         self.board = res
 
+    def _adj_nodes(self, point):
+        result = []
+        coordinate = self._decode_point(point)
+        if coordinate[0] - 1 >= 1 and coordinate[1] - 1 >= 1:
+            result.append((coordinate[0] - 1, coordinate[1] - 1))
+        if coordinate[0] - 1 >= 1:
+            result.append((coordinate[0] - 1, coordinate[1]))
+        if coordinate[1] - 1 >= 1:
+            result.append((coordinate[0], coordinate[1] - 1))
+        if coordinate[1] + 1 <= self.n:
+            result.append((coordinate[0], coordinate[1] + 1))
+        if coordinate[0] + 1 <= self.n:
+            result.append((coordinate[0] + 1, coordinate[1]))
+        if coordinate[0] + 1 <= self.n and coordinate[1] + 1 <= self.n:
+            result.append((coordinate[0] + 1, coordinate[1] + 1))
+
+        return [self._encode_point(point) for point in result]
+
+    def _BFS_new(self):
+        # Check Red colors
+        queue = []
+        visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
+        for i in range(1, self.n + 1):
+            if self.board[1][i] == 1:
+                queue.append(self._encode_point((1, i)))
+                visited[1][i] = True
+        while queue:
+            s = queue.pop(0)
+            s_temp = self._decode_point(s)
+            s_color = self.board[s_temp[0]][s_temp[1]]
+            adj_nodes = self._adj_nodes(s)
+            for node in adj_nodes:
+                temp = self._decode_point(node)
+                if self.board[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                    queue.append(node)
+                    visited[temp[0]][temp[1]] = True
+        for i in range(1, self.n + 1):
+            if visited[self.n][i]:
+                return 1
+
+        # Check Blue colors
+        queue = []
+        visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
+        for i in range(1, self.n + 1):
+            if self.board[i][1] == 2:
+                queue.append(self._encode_point((i, 1)))
+                visited[i][1] = True
+        while queue:
+            s = queue.pop(0)
+            s_temp = self._decode_point(s)
+            s_color = self.board[s_temp[0]][s_temp[1]]
+            adj_nodes = self._adj_nodes(s)
+            for node in adj_nodes:
+                temp = self._decode_point(node)
+                if self.board[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                    queue.append(node)
+                    visited[temp[0]][temp[1]] = True
+        for i in range(1, self.n + 1):
+            if visited[i][self.n]:
+                return 2
+
+        return None
+
     def _BFS_old(self, red):
         target = 0
         if red:
@@ -251,16 +314,16 @@ class HexEngine:
     # return 1 if red wins
     # return 2 if blue wins
     def wining_check(self):
-        red = self._BFS_old(True)
-        self._reverse()
-        blue = self._BFS_old(False)
-        self._reverse()
-        if red:
-            return 1
-        elif blue:
-            return 2
-        else:
-            return None
+        return self._BFS_new()
+        #self._reverse()
+        #blue = self._BFS_new()
+        #self._reverse()
+        # if red:
+        #     return 1
+        # elif blue:
+        #     return 2
+        # else:
+        #     return None
 
     # return available moves as a list
     def available_moves(self):
