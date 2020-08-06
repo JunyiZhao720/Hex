@@ -61,11 +61,21 @@ class DDQNAgent:
                         self.primary_network.trainable_variables): t.assign(t * (1 - DDQNAgent.TAU) + e * DDQNAgent.TAU)
 
     def act(self, observation):
+        mask = observation['mask']
+
         if np.random.rand() < self.epsilon:
-            return np.random.randint(0, self._action_size)
+            moves = [i for i in range(len(mask)) if mask[i] == 1]
+            return moves[np.random.randint(0, len(moves))]
         else:
-            q_values = self.primary_network.predict(x=np.reshape(observation['state'], (-1, self._state_shape[0],  self._state_shape[1])))
-            return np.argmax(q_values)
+            q_values = self.primary_network.predict(x=np.reshape(observation['state'], (-1, self._state_shape[0],  self._state_shape[1])))[0]
+            q_value_best = [-np.inf, -1]
+            for i in range(len(q_values)):
+                if q_values[i] > q_value_best[0] and mask[i]:
+                    q_value_best[0] = q_values[i]
+                    q_value_best[1] = i
+            if q_value_best[1] == -1:
+                print('Error: DDQNAgent.act() cannot find the best action.')
+            return q_value_best[1]
 
     def store(self, observation, action, reward, next_observation, terminated):
         self.experience_replay.store(observation, action, reward, next_observation, terminated)
@@ -78,10 +88,13 @@ class DDQNAgent:
         observations, actions, rewards, next_observations = self.experience_replay.get_arrays_from_batch(batch)
         states = np.reshape([observation['state'] for observation in observations], (-1, self._state_shape[0],  self._state_shape[1]))
         next_states = np.reshape([observation['state'] for observation in next_observations], (-1, self._state_shape[0],  self._state_shape[1]))
+        masks = np.array([observation['mask'] for observation in observations])
+        next_masks = np.array([observation['mask'] for observation in next_observations])
 
         # Predict Q(s,a) and Q(s',a') given the batch of states
-        q_values_state = self.primary_network(states).numpy()
-        q_values_next_state = self.primary_network(next_states).numpy()
+        # Apply action masks to them
+        q_values_state = self.primary_network(states).numpy() * masks
+        q_values_next_state = self.primary_network(next_states).numpy() * next_masks
 
         # Copy the q_values_state into the target
         target = q_values_state

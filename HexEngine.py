@@ -76,30 +76,18 @@ class HexEngine:
                     stack.insert(0, [row, col + 1])
 
     def _decode_point(self, point):
-        point_local = None
-        # Numpy Element
-        if type(point).__module__ == np.__name__:
-            point_local = point + 1
-        # Int
-        elif type(point) == int:
-            point_local = point + 1
-        # Coordination Already
-        elif len(point) == 2:
-            return point_local
-        else:
-            print('_decode error:', point_local)
-            return (0, 0)
-
-        if np.size(point_local) == 1:
-            row = point_local // (self.n + 1) + 1
-            col = point_local % self.n
-            if col == 0:
-                col = self.n
-            return (row, col)
+        if type(point) is tuple:
+            return point
+        elif type(point) is not int:
+            print('_decode error:', type(point))
+            return (-1, -1)
+        row = point // self.n + 1
+        col = point % self.n + 1
+        return (row, col)
 
     # start from 0
-    def _encode_point(self, point):
-        return self.n * (point[0] - 1) + point[1] - 1
+    def _encode_point(self, coordinate):
+        return self.n * (coordinate[0] - 1) + coordinate[1] - 1
 
     def _flip(self, round):
         if round == 2:
@@ -221,6 +209,7 @@ class HexEngine:
 
         if (self.board[row][col] != 0):
             print('Error: move() used on an occupied plot!')
+            return
 
         if self.round == self.human_color:
             self.board[row][col] = self.human_color
@@ -229,6 +218,7 @@ class HexEngine:
 
         if useGui:
             self.update_gui()
+
         self.round = self._flip(self.round)
 
     # Next round
