@@ -79,10 +79,10 @@ class HexEngine:
         point_local = None
         # Numpy Element
         if type(point).__module__ == np.__name__:
-            point_local = point
+            point_local = point + 1
         # Int
         elif type(point) == int:
-            point_local = point
+            point_local = point + 1
         # Coordination Already
         elif len(point) == 2:
             return point_local
@@ -97,8 +97,9 @@ class HexEngine:
                 col = self.n
             return (row, col)
 
+    # start from 0
     def _encode_point(self, point):
-        return self.n * (point[0] - 1) + point[1]
+        return self.n * (point[0] - 1) + point[1] - 1
 
     def _flip(self, round):
         if round == 2:

@@ -37,7 +37,7 @@ class HexEnv():
     def _get_mask(self):
         mask = np.zeros((self._engine.n**2,), dtype=np.int32)
         for i in self._engine.available_encoded_moves():
-            mask[i - 1] = 1
+            mask[i] = 1
         return mask
 
     # get n * n board rather than n+1 * n+1
