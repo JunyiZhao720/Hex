@@ -18,6 +18,27 @@ class HexEngine:
         self.round = -1
         self.count = 0
 
+    # start from 0
+    def _encode_point(self, coordinate):
+        return self.n * (coordinate[0] - 1) + coordinate[1] - 1
+
+    # start from (1, 1)
+    def _decode_point(self, point):
+        if type(point) is tuple:
+            return point
+        elif type(point) is not int:
+            print('_decode error:', type(point))
+            return (-1, -1)
+        row = point // self.n + 1
+        col = point % self.n + 1
+        return (row, col)
+
+    def _flip(self, round):
+        if round == 2:
+            return 1
+        else:
+            return 2
+
     def _adj_nodes(self, point):
         result = []
         coordinate = self._decode_point(point)
@@ -35,6 +56,7 @@ class HexEngine:
             result.append((coordinate[0] + 1, coordinate[1] + 1))
 
         return [self._encode_point(point) for point in result]
+
 
     def _BFS(self):
         # Check Red colors
@@ -80,27 +102,6 @@ class HexEngine:
                 return 2
 
         return None
-
-
-    def _decode_point(self, point):
-        if type(point) is tuple:
-            return point
-        elif type(point) is not int:
-            print('_decode error:', type(point))
-            return (-1, -1)
-        row = point // self.n + 1
-        col = point % self.n + 1
-        return (row, col)
-
-    # start from 0
-    def _encode_point(self, coordinate):
-        return self.n * (coordinate[0] - 1) + coordinate[1] - 1
-
-    def _flip(self, round):
-        if round == 2:
-            return 1
-        else:
-            return 2
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
     @staticmethod
@@ -155,7 +156,7 @@ class HexEngine:
 
 
     @staticmethod
-    # TODO: write a constructor that only accepts AI as players
+    # Constructor for only AI to use
     def create_AI_only(n, AI_1_red, AI_1_first, gui, ai):
         instance = HexEngine()
         instance.board = HexEngine.init_board(n)
