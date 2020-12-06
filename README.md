@@ -1,16 +1,11 @@
 # Hex
-## Hex 1.0
-Use multiple Machine Learning methods to achieve AI for the broad game HEX
-
-Currenty supports
-1. Monte Carlo
-2. DDQN
 
 
-# Hex 1.5
+
+## Hex 1.5
 Add Spark to sparallelize the calculation of Monte Carlo.
 
-1. Spark Monte Carlo: SparkMC
+Spark Monte Carlo
 Description
    - Use Spark to load the current state
    - Use Spark to clone enough copies
@@ -21,6 +16,8 @@ Problems:
    - State is tightly associated with Hex class
    - If change all functions specifically for an object, then too many functions will be static
    - Too many contructors
+   
+   - Original board use 1 and 2 to represent two different states, how to associate them with player colors
 Steps:
    - Re-design and refactor functions
    - Using Spark and create appropriate targets and clones
@@ -29,7 +26,7 @@ Steps:
    - Give the Monte Carlo result
 
 
-Step 1: Re-design and refactor functions
+Step 1: Re-design and refactor functions (HexRF)
 
 Current Functions: HexEngine
    __init__(self)
@@ -67,6 +64,13 @@ Refactor Description:
    - Player should use Monte Carlo and receive current state from HexEngine
    
 Refactor Design:
+   Player:
+      __init__(self, color, ai = None)
+
+      next(self, index, board)         # index presents the index of the player
+           
+      
+      
    HexEngine:
       __init__(self, n, player1, player2, gui, player1First = True)
       
@@ -84,7 +88,13 @@ Refactor Design:
       reset(self)
       run(self)
 
-   
+
+## Hex 1.0
+Use multiple Machine Learning methods to achieve AI for the broad game HEX
+
+Currenty supports
+1. Monte Carlo
+2. DDQN
    
    
    
