@@ -81,7 +81,7 @@ Refactor Design:
    Player:
       init(self, ai = None)
 
-      next(self, index, state)         # index presents the index of the player
+      next(self, state)         # index presents the index of the player
            
    HexGui:
       

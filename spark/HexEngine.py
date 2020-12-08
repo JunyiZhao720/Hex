@@ -10,10 +10,13 @@ class HexEngine:
     def __init__(self, n, player1, player2, gui, player1First = True):
         self.n = n
         self.players = {}
+        # TODO: set back
+        # player1.setIndex(1)
+        # player2.setIndex(2)
         self.players[1] = player1
         self.players[2] = player2
         self.gui = gui
-        self.board = np.zeros((n+1, n+1), dtype=np.int32)
+        self.state = np.zeros((n+1, n+1), dtype=np.int32)
         if player1First:
             self.round = self.players[1]
         else:
@@ -57,17 +60,17 @@ class HexEngine:
         queue = []
         visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
         for i in range(1, self.n + 1):
-            if self.board[1][i] == 1:
+            if self.state[1][i] == 1:
                 queue.append(self._encodePoint((1, i)))
                 visited[1][i] = True
         while queue:
             s = queue.pop(0)
             s_temp = self._decodePoint(s)
-            s_color = self.board[s_temp[0]][s_temp[1]]
+            s_color = self.state[s_temp[0]][s_temp[1]]
             adj_nodes = self._adjNodes(s)
             for node in adj_nodes:
                 temp = self._decodePoint(node)
-                if self.board[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                if self.state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
                     queue.append(node)
                     visited[temp[0]][temp[1]] = True
         for i in range(1, self.n + 1):
@@ -78,17 +81,17 @@ class HexEngine:
         queue = []
         visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
         for i in range(1, self.n + 1):
-            if self.board[i][1] == 2:
+            if self.state[i][1] == 2:
                 queue.append(self._encodePoint((i, 1)))
                 visited[i][1] = True
         while queue:
             s = queue.pop(0)
             s_temp = self._decodePoint(s)
-            s_color = self.board[s_temp[0]][s_temp[1]]
+            s_color = self.state[s_temp[0]][s_temp[1]]
             adj_nodes = self._adjNodes(s)
             for node in adj_nodes:
                 temp = self._decodePoint(node)
-                if self.board[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                if self.state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
                     queue.append(node)
                     visited[temp[0]][temp[1]] = True
         for i in range(1, self.n + 1):
@@ -99,8 +102,7 @@ class HexEngine:
 
     # Update gui and display
     def _updateGui(self):
-        self.gui.update(self.board)
-        self.gui.display()
+        self.gui.display(self.state)
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
 
@@ -117,17 +119,17 @@ class HexEngine:
         moves = []
         for x in range(1, self.n + 1):
             for y in range(1, self.n + 1):
-                if not self.board[x][y]:
+                if not self.state[x][y]:
                     moves.append((x, y))
         return moves
 
     # Input:(x, y)
-    # 1. update board point, make the (x,y) point on the board based on self.round
+    # 1. update state point, make the (x,y) point on the state based on self.round
     # 2. update self.round to the next
     def move(self):
         pass
 
-    # Used to reset the current board for the next round run
+    # Used to reset the current state for the next round run
     def reset(self):
         pass
 
