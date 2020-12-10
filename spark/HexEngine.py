@@ -16,11 +16,8 @@ class HexEngine:
         self.players[1] = player1
         self.players[2] = player2
         self.gui = gui
-        self.state = np.zeros((n+1, n+1), dtype=np.int32)
-        if player1First:
-            self.round = self.players[1]
-        else:
-            self.round = self.players[2]
+        self.player1First = player1First
+        self.reset()
 
     # start from 0
     def _encodePoint(self, coordinate):
@@ -100,16 +97,20 @@ class HexEngine:
 
         return None
 
-    # Update gui and display
-    def _updateGui(self):
-        self.gui.display(self.state)
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
 
-    # Check either side wins
+    # Used to reset the current state for the next round run
+    def reset(self):
+        self.state = np.zeros((self.n+1, self.n+1), dtype=np.int32)
+        if self.player1First:
+            self.round = self.players[1]
+        else:
+            self.round = self.players[2]
+
+    # check either side wins
     # return None if no side wins
-    # return 1 if red wins
-    # return 2 if blue wins
+    # return 1 or 2 if the associated player wins
     def checkWin(self):
         # check use BFS
         return self._bfs()
@@ -122,19 +123,32 @@ class HexEngine:
                 if not self.state[x][y]:
                     moves.append((x, y))
         return moves
+    # Update gui and display
+    def updateGui(self):
+        self.gui.display(self.state)
 
-    # Input:(x, y)
     # 1. update state point, make the (x,y) point on the state based on self.round
     # 2. update self.round to the next
-    def move(self):
-        pass
+    def next(self):
+        move = self.round.next(self.state)
 
-    # Used to reset the current state for the next round run
-    def reset(self):
-        pass
+        if self.round == self.players[1]:
+            self.state[move[0]][move[1]] = 1
+            self.round = self.players[2]
+        else:
+            self.state[move[0]][move[1]] = 2
+            self.round = self.players[1]
 
     def run(self):
-        pass
+        self.updateGui()
+        won = None
+
+        while not won:
+            self.next()
+            self.updateGui()
+            won = self.checkWin()
+
+        print('player ', won, ' wins!')
 
 
 if __name__ == '__main__':

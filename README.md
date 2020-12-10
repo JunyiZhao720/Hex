@@ -80,7 +80,7 @@ Refactor Description:
 Refactor Design:
    Player:
       init(self, ai = None)
-
+      setIndex(index)
       next(self, state)         # index presents the index of the player
            
    HexGui:
