@@ -1,6 +1,6 @@
 
-from HexGui import HexGui
-from HexAI import HexAI
+from spark.HexGui import HexGui
+from spark.HexPlayer import HexPlayer
 
 import numpy as np
 class HexEngine:
@@ -152,4 +152,7 @@ class HexEngine:
 
 
 if __name__ == '__main__':
-    pass
+    p1 = HexPlayer()
+    p2 = HexPlayer()
+    engine = HexEngine(n=8, player1=p1, player2=p2, gui=HexGui)
+    engine.run()

@@ -7,7 +7,8 @@ class HexPlayer:
         self.index = index
 
     def next(self, state):
-        pass
+        # TODO
+        return (1, 1)
 
 
 
