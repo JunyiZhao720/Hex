@@ -1,3 +1,4 @@
+import time
 class HexPlayer:
     def __init__(self, ai):
         self.ai = ai
@@ -7,7 +8,10 @@ class HexPlayer:
         self.index = index
 
     def next(self, state):
-        return self.ai.solve(self.index, state)
+        time_start = time.time()
+        result = self.ai.solve(self.index, state)
+        print('Player uses ', str(time.time() - time_start), 'seconds.')
+        return result
 
 
 
