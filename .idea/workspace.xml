@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf189dfa-0233-4dda-8c4c-b3c9eaf97e9e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/spark/HexEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark/HexEngine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark/HexPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark/HexPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark/model/Human.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark/model/Human.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spark/model/MonteCarlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/spark/model/MonteCarlo.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,12 +76,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1696" />
+          <entry key="py" value="1728" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1696" />
+          <entry key="Python" value="1728" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -101,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spark/HexEngine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="148" column="33" lean-forward="true" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+            <state relative-caret-position="351">
+              <caret line="157" column="16" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
               <folding>
                 <element signature="e#1#32#0" expanded="true" />
                 <marker date="1607651362822" expanded="true" signature="364:653" ph="..." />
@@ -114,22 +114,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spark/model/Human.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+            <state relative-caret-position="30">
+              <caret line="1" selection-end-line="11" selection-end-column="21" />
               <folding>
-                <marker date="1607651567347" expanded="true" signature="12:17" ph="..." />
-                <marker date="1607651567347" expanded="true" signature="49:55" ph="..." />
+                <marker date="1607651735889" expanded="true" signature="12:13" ph="..." />
+                <marker date="1607651735889" expanded="true" signature="13:18" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spark/model/MonteCarlo.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+              <folding>
+                <marker date="1607651824408" expanded="true" signature="54:60" ph="..." />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -175,7 +182,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-155">
+            <state relative-caret-position="-561">
               <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
             </state>
           </provider>
@@ -262,10 +269,10 @@
         <option value="$PROJECT_DIR$/HexEngine.py" />
         <option value="$PROJECT_DIR$/spark/HexGui.py" />
         <option value="$PROJECT_DIR$/spark/test/HexEngineUnitTest.py" />
-        <option value="$PROJECT_DIR$/spark/model/MonteCarlo.py" />
         <option value="$PROJECT_DIR$/spark/HexPlayer.py" />
         <option value="$PROJECT_DIR$/spark/HexEngine.py" />
         <option value="$PROJECT_DIR$/spark/model/Human.py" />
+        <option value="$PROJECT_DIR$/spark/model/MonteCarlo.py" />
       </list>
     </option>
   </component>
@@ -510,7 +517,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32790446" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17480999" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4408252" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.22584148" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -693,22 +700,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-155">
-          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spark/test/HexEngineUnitTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spark/model/MonteCarlo.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/spark/HexPlayer.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -721,10 +718,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HexGui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spark/HexEngine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="148" column="33" lean-forward="true" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+        <state relative-caret-position="351">
+          <caret line="157" column="16" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
           <folding>
             <element signature="e#1#32#0" expanded="true" />
             <marker date="1607651362822" expanded="true" signature="364:653" ph="..." />
@@ -735,20 +739,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HexGui.py">
+    <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="21" />
+        <state relative-caret-position="-561">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spark/model/Human.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        <state relative-caret-position="30">
+          <caret line="1" selection-end-line="11" selection-end-column="21" />
           <folding>
-            <marker date="1607651567347" expanded="true" signature="12:17" ph="..." />
-            <marker date="1607651567347" expanded="true" signature="49:55" ph="..." />
+            <marker date="1607651735889" expanded="true" signature="12:13" ph="..." />
+            <marker date="1607651735889" expanded="true" signature="13:18" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spark/model/MonteCarlo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding>
+            <marker date="1607651824408" expanded="true" signature="54:60" ph="..." />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,4 @@
 class Human:
-    def __init__(self):
-        pass
 
     def solve(self, index, state):
         x = int(input("Please enter x coordinate: "))
