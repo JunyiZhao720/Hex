@@ -108,6 +108,11 @@ Refactor Design:
       reset(self)
       run(self)
 
+Step 2: Spark re-implementation
+   - Using Spark and create appropriate targets and clones
+   - Using Spark to make sure that each game will run until end
+   - Collect the Spark results
+   - Give the Monte Carlo result
 
 ## Hex 1.0
 Use multiple Machine Learning methods to achieve AI for the broad game HEX

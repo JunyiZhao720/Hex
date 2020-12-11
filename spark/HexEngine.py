@@ -10,9 +10,8 @@ class HexEngine:
     def __init__(self, n, player1, player2, gui, player1First = True):
         self.n = n
         self.players = {}
-        # TODO: set back
-        # player1.setIndex(1)
-        # player2.setIndex(2)
+        player1.setIndex(1)
+        player2.setIndex(2)
         self.players[1] = player1
         self.players[2] = player2
         self.gui = gui
@@ -150,9 +149,10 @@ class HexEngine:
         print('player ', won, ' wins!')
 
 from spark.model.Human import Human
+from spark.model.MonteCarlo import MonteCarlo
 
 if __name__ == '__main__':
-    p1 = HexPlayer(ai = Human())
     p2 = HexPlayer(ai = Human())
+    p1 = HexPlayer(ai = MonteCarlo(n_copies=1))
     engine = HexEngine(n=8, player1=p1, player2=p2, gui=HexGui)
     engine.run()

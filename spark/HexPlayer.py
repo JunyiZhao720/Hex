@@ -5,7 +5,6 @@ class HexPlayer:
 
     def setIndex(self, index):
         self.index = index
-        self.ai.setIndex(index)
 
     def next(self, state):
         return self.ai.solve(self.index, state)
