@@ -147,12 +147,12 @@ class HexEngine:
             self.next()
             self.updateGui()
             won = self.checkWin()
-
         print('player ', won, ' wins!')
 
+from spark.model.Human import Human
 
 if __name__ == '__main__':
-    p1 = HexPlayer()
-    p2 = HexPlayer()
+    p1 = HexPlayer(ai = Human())
+    p2 = HexPlayer(ai = Human())
     engine = HexEngine(n=8, player1=p1, player2=p2, gui=HexGui)
     engine.run()

@@ -18,7 +18,7 @@
     <SUITE FILE_PATH="coverage/Hex$HexAI_TFAgent_tutorial.coverage" NAME="HexAI_TFAgent_tutorial Coverage Results" MODIFIED="1595736291318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
     <SUITE FILE_PATH="coverage/Hex$AgentTrainer.coverage" NAME="AgentTrainer Coverage Results" MODIFIED="1596757184402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algo" />
     <SUITE FILE_PATH="coverage/Hex$test.coverage" NAME="test Coverage Results" MODIFIED="1595472445543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Hex$HexEngine.coverage" NAME="HexEngine Coverage Results" MODIFIED="1607636540078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark" />
+    <SUITE FILE_PATH="coverage/Hex$HexEngine.coverage" NAME="HexEngine Coverage Results" MODIFIED="1607651578269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark" />
     <SUITE FILE_PATH="coverage/Hex$DDQNAgent.coverage" NAME="DDQNAgent Coverage Results" MODIFIED="1596687013655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algo" />
     <SUITE FILE_PATH="coverage/Hex$HexEngineUnitTest.coverage" NAME="HexEngineUnitTest Coverage Results" MODIFIED="1607469226315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark/test" />
     <SUITE FILE_PATH="coverage/Hex$HexGui.coverage" NAME="HexGui Coverage Results" MODIFIED="1607468269662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spark" />
@@ -76,22 +76,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1332" />
+          <entry key="py" value="1696" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1332" />
+          <entry key="Python" value="1696" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="7" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="7" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
     </session>
@@ -101,15 +101,42 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spark/HexEngine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="157" column="16" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
+            <state relative-caret-position="463">
+              <caret line="148" column="33" lean-forward="true" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
               <folding>
                 <element signature="e#1#32#0" expanded="true" />
-                <marker date="1607636502816" expanded="true" signature="364:653" ph="..." />
-                <marker date="1607636502816" expanded="true" signature="4725:4997" ph="..." />
-                <marker date="1607636502816" expanded="true" signature="4725:4998" ph="..." />
-                <marker date="1607636502816" expanded="true" signature="4998:5003" ph="..." />
+                <marker date="1607651362822" expanded="true" signature="364:653" ph="..." />
+                <marker date="1607651362822" expanded="true" signature="4725:4997" ph="..." />
+                <marker date="1607651362822" expanded="true" signature="4725:4998" ph="..." />
+                <marker date="1607651362822" expanded="true" signature="4998:5003" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spark/model/Human.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+              <folding>
+                <marker date="1607651567347" expanded="true" signature="12:17" ph="..." />
+                <marker date="1607651567347" expanded="true" signature="49:55" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spark/model/MonteCarlo.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HexGui.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -123,33 +150,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spark/HexPlayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+            <state relative-caret-position="19">
+              <caret line="1" column="25" lean-forward="true" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
               <folding>
-                <marker date="1607636534308" expanded="true" signature="16:226" ph="..." />
-                <marker date="1607636534308" expanded="true" signature="225:226" ph="..." />
+                <marker date="1607651317095" expanded="true" signature="16:262" ph="..." />
+                <marker date="1607651317095" expanded="true" signature="261:262" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-155">
-              <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/HexEngine_UnitTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
@@ -164,15 +173,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HexAI.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/HexEngine_BFS_backup.py">
+        <entry file="file://$PROJECT_DIR$/model/MonteCarlo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4389">
-              <caret line="231" selection-start-line="231" selection-end-line="231" />
+            <state relative-caret-position="-155">
+              <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -258,8 +262,10 @@
         <option value="$PROJECT_DIR$/HexEngine.py" />
         <option value="$PROJECT_DIR$/spark/HexGui.py" />
         <option value="$PROJECT_DIR$/spark/test/HexEngineUnitTest.py" />
-        <option value="$PROJECT_DIR$/spark/HexEngine.py" />
+        <option value="$PROJECT_DIR$/spark/model/MonteCarlo.py" />
         <option value="$PROJECT_DIR$/spark/HexPlayer.py" />
+        <option value="$PROJECT_DIR$/spark/HexEngine.py" />
+        <option value="$PROJECT_DIR$/spark/model/Human.py" />
       </list>
     </option>
   </component>
@@ -298,6 +304,12 @@
               <item name="Hex" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hex" type="462c0819:PsiDirectoryNode" />
               <item name="spark" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hex" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Hex" type="462c0819:PsiDirectoryNode" />
+              <item name="spark" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Hex" type="b2602c69:ProjectViewProjectNode" />
@@ -498,7 +510,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32790446" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42982456" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17480999" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.22584148" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -637,24 +649,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HexGui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/HexEngine_UnitTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spark/test/HexEngineUnitTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -702,27 +700,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spark/HexEngine.py">
+    <entry file="file://$PROJECT_DIR$/spark/test/HexEngineUnitTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="157" column="16" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="16" />
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spark/model/MonteCarlo.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spark/HexPlayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="25" lean-forward="true" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
           <folding>
-            <element signature="e#1#32#0" expanded="true" />
-            <marker date="1607636502816" expanded="true" signature="364:653" ph="..." />
-            <marker date="1607636502816" expanded="true" signature="4725:4997" ph="..." />
-            <marker date="1607636502816" expanded="true" signature="4725:4998" ph="..." />
-            <marker date="1607636502816" expanded="true" signature="4998:5003" ph="..." />
+            <marker date="1607651317095" expanded="true" signature="16:262" ph="..." />
+            <marker date="1607651317095" expanded="true" signature="261:262" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spark/HexPlayer.py">
+    <entry file="file://$PROJECT_DIR$/spark/HexEngine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="463">
+          <caret line="148" column="33" lean-forward="true" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
           <folding>
-            <marker date="1607636534308" expanded="true" signature="16:226" ph="..." />
-            <marker date="1607636534308" expanded="true" signature="225:226" ph="..." />
+            <element signature="e#1#32#0" expanded="true" />
+            <marker date="1607651362822" expanded="true" signature="364:653" ph="..." />
+            <marker date="1607651362822" expanded="true" signature="4725:4997" ph="..." />
+            <marker date="1607651362822" expanded="true" signature="4725:4998" ph="..." />
+            <marker date="1607651362822" expanded="true" signature="4998:5003" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HexGui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spark/model/Human.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+          <folding>
+            <marker date="1607651567347" expanded="true" signature="12:17" ph="..." />
+            <marker date="1607651567347" expanded="true" signature="49:55" ph="..." />
           </folding>
         </state>
       </provider>
