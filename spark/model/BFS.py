@@ -1,8 +1,8 @@
 class BFS:
     # start from 0
     @staticmethod
-    def _encodePoint(coordinate, n):
-        return n * (coordinate[0] - 1) + coordinate[1] - 1
+    def _encodePoint(point, n):
+        return n * (point[0] - 1) + point[1] - 1
 
     # start from (1, 1)
     @staticmethod
@@ -17,44 +17,49 @@ class BFS:
         return (row, col)
 
     @staticmethod
-    def _adjNodes(point, n):
+    def adjNodes(point, n):
         result = []
-        coordinate = BFS._decodePoint(point, n)
-        if coordinate[0] - 1 >= 1 and coordinate[1] - 1 >= 1:
-            result.append((coordinate[0] - 1, coordinate[1] - 1))
-        if coordinate[0] - 1 >= 1:
-            result.append((coordinate[0] - 1, coordinate[1]))
-        if coordinate[1] - 1 >= 1:
-            result.append((coordinate[0], coordinate[1] - 1))
-        if coordinate[1] + 1 <= n:
-            result.append((coordinate[0], coordinate[1] + 1))
-        if coordinate[0] + 1 <= n:
-            result.append((coordinate[0] + 1, coordinate[1]))
-        if coordinate[0] + 1 <= n and coordinate[1] + 1 <= n:
-            result.append((coordinate[0] + 1, coordinate[1] + 1))
+        r = point[0]
+        c = point[1]
+        # left top
+        if r - 1 >= 1:
+            result.append((r - 1, c))
+        # right top
+        if r - 1 >= 1 and c + 1 <= n:
+            result.append((r - 1, c + 1))
+        # left middle
+        if c - 1 >= 1:
+            result.append((r, c - 1))
+        # right middle
+        if c + 1 <= n:
+            result.append((r, c + 1))
+        # left bottom
+        if r + 1 <= n and c - 1 >= 1:
+            result.append((r + 1, c - 1))
+        # right bottom
+        if r + 1 <= n:
+            result.append((r + 1, c))
 
-        return [BFS._encodePoint(point, n) for point in result]
+        return result
 
     @staticmethod
     def bfs(state):
         n = len(state) - 1
         # Check Player 1
         queue = []
-        visited = [[False] * (n + 1) for i in range(n + 1)]
+        visited = [[False] * (n + 1) for _ in range(n + 1)]
         for i in range(1, n + 1):
             if state[1][i] == 1:
-                queue.append(BFS._encodePoint((1, i), n))
+                queue.append((1, i))
                 visited[1][i] = True
         while queue:
             s = queue.pop(0)
-            s_temp = BFS._decodePoint(s, n)
-            s_color = state[s_temp[0]][s_temp[1]]
-            adj_nodes = BFS._adjNodes(s, n)
+            s_color = state[s[0]][s[1]]
+            adj_nodes = BFS.adjNodes(s, n)
             for node in adj_nodes:
-                temp = BFS._decodePoint(node, n)
-                if state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                if state[node[0]][node[1]] == s_color and not visited[node[0]][node[1]]:
                     queue.append(node)
-                    visited[temp[0]][temp[1]] = True
+                    visited[node[0]][node[1]] = True
         for i in range(1, n + 1):
             if visited[n][i]:
                 return 1
@@ -64,18 +69,16 @@ class BFS:
         visited = [[False] * (n + 1) for i in range(n + 1)]
         for i in range(1, n + 1):
             if state[i][1] == 2:
-                queue.append(BFS._encodePoint((i, 1), n))
+                queue.append((i, 1))
                 visited[i][1] = True
         while queue:
             s = queue.pop(0)
-            s_temp = BFS._decodePoint(s, n)
-            s_color = state[s_temp[0]][s_temp[1]]
-            adj_nodes = BFS._adjNodes(s, n)
+            s_color = state[s[0]][s[1]]
+            adj_nodes = BFS.adjNodes(s, n)
             for node in adj_nodes:
-                temp = BFS._decodePoint(node, n)
-                if state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
+                if state[node[0]][node[1]] == s_color and not visited[node[0]][node[1]]:
                     queue.append(node)
-                    visited[temp[0]][temp[1]] = True
+                    visited[node[0]][node[1]] = True
         for i in range(1, n + 1):
             if visited[i][n]:
                 return 2

@@ -1,6 +1,7 @@
 
 from spark.HexGui import HexGui
 from spark.HexPlayer import HexPlayer
+from spark.model.BFS import BFS
 
 import numpy as np
 class HexEngine:
@@ -18,84 +19,6 @@ class HexEngine:
         self.player1First = player1First
         self.reset()
 
-    # start from 0
-    def _encodePoint(self, coordinate):
-        return self.n * (coordinate[0] - 1) + coordinate[1] - 1
-
-    # start from (1, 1)
-    def _decodePoint(self, point):
-        if type(point) is tuple:
-            return point
-        elif type(point) is not int:
-            print('_decode error:', type(point))
-            return (-1, -1)
-        row = point // self.n + 1
-        col = point % self.n + 1
-        return (row, col)
-
-    def _adjNodes(self, point):
-        result = []
-        coordinate = self._decodePoint(point)
-        if coordinate[0] - 1 >= 1 and coordinate[1] - 1 >= 1:
-            result.append((coordinate[0] - 1, coordinate[1] - 1))
-        if coordinate[0] - 1 >= 1:
-            result.append((coordinate[0] - 1, coordinate[1]))
-        if coordinate[1] - 1 >= 1:
-            result.append((coordinate[0], coordinate[1] - 1))
-        if coordinate[1] + 1 <= self.n:
-            result.append((coordinate[0], coordinate[1] + 1))
-        if coordinate[0] + 1 <= self.n:
-            result.append((coordinate[0] + 1, coordinate[1]))
-        if coordinate[0] + 1 <= self.n and coordinate[1] + 1 <= self.n:
-            result.append((coordinate[0] + 1, coordinate[1] + 1))
-
-        return [self._encodePoint(point) for point in result]
-
-    def _bfs(self):
-        # Check Player 1
-        queue = []
-        visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
-        for i in range(1, self.n + 1):
-            if self.state[1][i] == 1:
-                queue.append(self._encodePoint((1, i)))
-                visited[1][i] = True
-        while queue:
-            s = queue.pop(0)
-            s_temp = self._decodePoint(s)
-            s_color = self.state[s_temp[0]][s_temp[1]]
-            adj_nodes = self._adjNodes(s)
-            for node in adj_nodes:
-                temp = self._decodePoint(node)
-                if self.state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
-                    queue.append(node)
-                    visited[temp[0]][temp[1]] = True
-        for i in range(1, self.n + 1):
-            if visited[self.n][i]:
-                return 1
-
-        # Check Player 2
-        queue = []
-        visited = [[False] * (self.n + 1) for i in range(self.n + 1)]
-        for i in range(1, self.n + 1):
-            if self.state[i][1] == 2:
-                queue.append(self._encodePoint((i, 1)))
-                visited[i][1] = True
-        while queue:
-            s = queue.pop(0)
-            s_temp = self._decodePoint(s)
-            s_color = self.state[s_temp[0]][s_temp[1]]
-            adj_nodes = self._adjNodes(s)
-            for node in adj_nodes:
-                temp = self._decodePoint(node)
-                if self.state[temp[0]][temp[1]] == s_color and not visited[temp[0]][temp[1]]:
-                    queue.append(node)
-                    visited[temp[0]][temp[1]] = True
-        for i in range(1, self.n + 1):
-            if visited[i][self.n]:
-                return 2
-
-        return None
-
 
     # ----------------------------------------PUBLIC FIELD---------------------------------------------
 
@@ -112,7 +35,7 @@ class HexEngine:
     # return 1 or 2 if the associated player wins
     def checkWin(self):
         # check use BFS
-        return self._bfs()
+        return BFS.bfs(self.state)
 
     # return available moves as a list
     def availableMoves(self):
@@ -142,7 +65,7 @@ class HexEngine:
         self.updateGui()
         won = None
 
-        while not won:
+        while won is None:
             self.next()
             self.updateGui()
             won = self.checkWin()
@@ -154,5 +77,5 @@ from spark.model.MonteCarlo import MonteCarlo
 if __name__ == '__main__':
     p2 = HexPlayer(ai = Human())
     p1 = HexPlayer(ai = MonteCarlo(n_copies=5000))
-    engine = HexEngine(n=8, player1=p1, player2=p2, gui=HexGui)
+    engine = HexEngine(n=6, player1=p2, player2=p1, gui=HexGui)
     engine.run()
