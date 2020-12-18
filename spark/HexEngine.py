@@ -76,6 +76,6 @@ from spark.model.MonteCarlo import MonteCarlo
 
 if __name__ == '__main__':
     p2 = HexPlayer(ai = Human())
-    p1 = HexPlayer(ai = MonteCarlo(n_copies=5000))
-    engine = HexEngine(n=6, player1=p2, player2=p1, gui=HexGui)
+    p1 = HexPlayer(ai = MonteCarlo(n_copies=1000))
+    engine = HexEngine(n=8, player1=p1, player2=p2, gui=HexGui)
     engine.run()

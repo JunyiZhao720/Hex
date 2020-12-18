@@ -1,7 +1,5 @@
 # Hex
 
-
-
 ## Hex 1.5
 Add Spark to sparallelize the calculation of Monte Carlo.
 
@@ -28,42 +26,6 @@ Steps:
 
 
 Step 1: Re-design and refactor functions (HexRF)
-
-Current Functions: 
-   HexEngine:
-      init(self)
-      
-      _encode_point(self, coordinate)
-      _decode_point(self, point)
-      _adj_nodes(self, point)
-      _BFS(self)
-      
-      @staticmethod init_state(n)
-      @staticmethod create_new(n, human_color_red, human_move_first, gui, ai)
-      *@staticmethod create_exist(state, human_color_red, round, gui, ai)
-      @staticmethod create_AI_only(n, AI_1_red, AI_1_first, gui, ai)
-      
-      *wining_check(self)
-      available_moves(self)
-      available_encoded_moves(self)
-      move(self, point, useGui=True)
-      next(self)
-      update_gui(self)
-      *clone(self, useGui = False, useAI = False)
-      reset(self)
-      run(self)
-   HexGui:
-      init(self, human_color_red)
-      
-      _star_color(self, value)
-      
-      @staticmethod configuartion_gui()
-      
-      color_name(self)
-      update(self, state)
-      next_human(self)
-      display(self)
-      clone(self)
    
 Refactor Description:
    - Basic unit is Hex class, but need to solve when there are tremendous copies
@@ -77,36 +39,6 @@ Refactor Description:
    - Monte Carlo should have an independent BFS algorithm which doesn't mess with the main one used by HexEngine
    - Player should use Monte Carlo and receive current state from HexEngine
    
-Refactor Design:
-   Player:
-      init(self, ai = None)
-      setIndex(index)
-      next(self, state)         # index presents the index of the player
-           
-   HexGui:
-      
-      *configuartion_gui()
-
-      @staticmethod _coloredStar(index)
-      @staticmethod display(state)
-      
-      
-   HexEngine:
-      init(self, n, player1, player2, gui, player1First = True)
-      
-      _encodePoint(self, coordinate)
-      _decodePoint(self, point)
-      _adjNodes(self, point)
-      _bfs(self)
-      
-      checkWin(self)
-      availableMoves(self)
-      *available_encoded_moves(self)
-      move(self)
-      updateGui(self)
-      *clone(self, useGui = False, useAI = False)
-      reset(self)
-      run(self)
 
 Step 2: Spark re-implementation
    - Using Spark and create appropriate targets and clones

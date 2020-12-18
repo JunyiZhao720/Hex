@@ -1,10 +1,7 @@
 import numpy as np
-import tensorflow as tf
 from HexEngine import HexEngine
 from HexGui import HexGui
 
-
-from tf_agents.policies import random_py_policy
 
 class HexEnv():
     def __init__(self):
